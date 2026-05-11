@@ -451,3 +451,38 @@ html:not([data-mode]) .academic-only {
   font-size: 13px;
   font-style: italic;
 }
+
+/* ── Floating "Review this chapter" button (academic-only) ──── */
+.review-chapter-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 28px;
+  font-family: var(--font-en-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 50;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.review-chapter-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+.review-chapter-fab .fab-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+@media (max-width: 600px) {
+  .review-chapter-fab { right: 14px; bottom: 14px; padding: 10px 14px; font-size: 12px; }
+  .review-chapter-fab .fab-label { display: none; }
+  .review-chapter-fab .fab-icon { font-size: 20px; }
+}

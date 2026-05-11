@@ -424,6 +424,14 @@
     var navFooter = document.querySelector(".chapter-nav");
     if (navFooter) navFooter.innerHTML = buildChapterNav(params.ch, lang);
 
+    // Floating "Review this chapter" button — prefill chapter param into the form URL.
+    // The button itself is hidden in public mode via the .academic-only CSS rule,
+    // so we only need to set the href (not toggle visibility).
+    var fab = document.getElementById("review-chapter-fab");
+    if (fab) {
+      fab.setAttribute("href", "review.html?ch=" + encodeURIComponent(params.ch));
+    }
+
     // Content
     var content = document.querySelector(".reader-content");
     if (!content) return;

@@ -25,7 +25,9 @@
       <a href="read-en.html">English</a>
       <a href="read-bn.html">বাংলা</a>
       <a href="glossary.html">Glossary</a>
-      <a href="scholar.html" class="academic-only">Scholar Review</a>
+      <a href="mufti-review.html" class="academic-only">Mufti Review</a>
+      <a href="review.html" class="academic-only">Submit Review</a>
+      <a href="scholar.html" class="academic-only">Scholar Guide</a>
       <a href="status.html" class="academic-only">Status</a>
       <button class="theme-toggle" type="button">☾ Dark</button>
     </div>
@@ -45,6 +47,16 @@
   </article>
 
 </div>
+
+<!--
+  Floating "Review this chapter" button — academic-only.
+  Pre-fills the chapter parameter into the review form.
+  Hidden in public reader mode via the .academic-only CSS rule.
+-->
+<a class="review-chapter-fab academic-only" id="review-chapter-fab" href="review.html" title="Submit a review comment on this chapter">
+  <span class="fab-icon" aria-hidden="true">✎</span>
+  <span class="fab-label">Review this chapter</span>
+</a>
 
 <footer class="site-footer">
   <p class="public-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="glossary.html">Glossary</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Editorial mode</button></p>

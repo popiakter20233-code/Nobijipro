@@ -67,3 +67,13 @@
   from = "/status"
   to = "/status.html"
   status = 200
+
+[[redirects]]
+  from = "/mufti-review"
+  to = "/mufti-review.html"
+  status = 200
+
+[[redirects]]
+  from = "/review"
+  to = "/review.html"
+  status = 200

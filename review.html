@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Submit a scholar/Mufti review comment — Nobiji Pro manuscript">
+  <meta name="robots" content="noindex">
+  <title>Submit Review — Nobiji Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/reader.css">
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}/* Review page forces academic mode so visiting Muftis see the editorial interface even from a cold link. */ if(!m){m="academic";localStorage.setItem("nobiji-mode","academic");} document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+  <style>
+    /* Form-specific styling — keeps form clean, calm, scholarly. */
+    .review-form-wrap { max-width: 760px; margin: 0 auto; }
+    .review-form { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 28px 32px; margin: 24px 0 40px; }
+    .review-form fieldset { border: none; padding: 0; margin: 0 0 28px; }
+    .review-form legend { font-family: var(--font-en-sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; padding: 0; }
+    .review-form .field { margin-bottom: 18px; }
+    .review-form .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .review-form .field-row { grid-template-columns: 1fr; } }
+    .review-form label { display: block; font-family: var(--font-en-sans); font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 6px; }
+    .review-form label .required { color: var(--accent); margin-left: 2px; }
+    .review-form label .optional { color: var(--ink-muted); font-weight: 400; font-style: italic; margin-left: 4px; font-size: 12px; }
+    .review-form input[type="text"],
+    .review-form input[type="email"],
+    .review-form select,
+    .review-form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      font-family: var(--font-en-serif);
+      font-size: 15px;
+      background: var(--bg);
+      color: var(--ink);
+      box-sizing: border-box;
+      transition: border-color 0.15s ease;
+    }
+    .review-form input[type="text"]:focus,
+    .review-form input[type="email"]:focus,
+    .review-form select:focus,
+    .review-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .review-form textarea { min-height: 90px; resize: vertical; font-family: var(--font-en-serif); }
+    .review-form .help { font-size: 12px; color: var(--ink-muted); margin-top: 4px; font-style: italic; }
+    .review-form .radio-group { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; }
+    .review-form .radio-group label { display: flex; align-items: center; gap: 6px; font-weight: 400; font-family: var(--font-en-serif); font-size: 14px; cursor: pointer; margin: 0; }
+    .review-form .submit-row { margin-top: 28px; display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
+    .review-form button[type="submit"] {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 12px 24px;
+      font-family: var(--font-en-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .review-form button[type="submit"]:hover { background: var(--accent-soft, var(--accent)); }
+    .review-form .reset-btn {
+      background: transparent;
+      color: var(--ink-muted);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 10px 16px;
+      font-family: var(--font-en-sans);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .severity-critical { color: #b03a2e; }
+    .severity-medium { color: #b9770e; }
+    .severity-minor { color: var(--ink-soft); }
+
+    /* Thank-you panel (shown after successful submit) */
+    .thankyou {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      margin: 32px 0;
+      text-align: center;
+    }
+    .thankyou h2 { margin-top: 0; color: var(--accent); font-family: var(--font-en-serif); }
+    .thankyou .salam { font-family: var(--font-en-serif); font-style: italic; color: var(--ink-soft); margin-bottom: 12px; }
+    .thankyou .actions { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .thankyou .actions a { padding: 10px 18px; background: var(--accent); color: #fff; text-decoration: none; border-radius: 4px; font-family: var(--font-en-sans); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+    .thankyou .actions a.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">Nobiji <span class="ornament">❦</span> Pro</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">Menu</button>
+    <div class="site-nav-links">
+      <a href="read-en.html">English</a>
+      <a href="read-bn.html">বাংলা</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="mufti-review.html" class="academic-only">Mufti Review</a>
+      <a href="review.html" class="academic-only" aria-current="page">Submit Review</a>
+      <a href="scholar.html" class="academic-only">Scholar Guide</a>
+      <a href="status.html" class="academic-only">Status</a>
+      <button class="theme-toggle" type="button">☾ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+<div class="review-form-wrap">
+
+  <!-- ─── Thank-you panel (hidden by default; shown after ?success=1) ─── -->
+  <div id="thankyou" class="thankyou" hidden>
+    <div class="salam">JazākAllāhu khayran al-jazā'</div>
+    <h2>Your review has been received</h2>
+    <p>Your feedback has been logged. The editorial team will read it carefully, apply the corrections you suggested, and follow up if any clarification is needed. May Allah ﷻ reward you for the time and care you have given to this work.</p>
+    <div class="actions">
+      <a href="review.html">Submit another comment</a>
+      <a href="mufti-review.html" class="secondary">Back to Mufti Review hub</a>
+      <a href="read-en.html" class="secondary">Continue reading</a>
+    </div>
+  </div>
+
+  <!-- ─── Form panel ─── -->
+  <div id="form-panel">
+
+    <div class="prose" style="margin-bottom: 8px;">
+      <h1 style="margin-bottom: 8px;">Submit a Review Comment</h1>
+      <p class="lead">One submission per item you want to raise. Use as many as you need — there is no submission limit. <em>JazākumullāhuKhayran</em> for the time you are giving.</p>
+      <p style="font-size: 13px; color: var(--ink-muted);">Required fields are marked <span style="color: var(--accent);">*</span>. If you prefer to send feedback by another channel (email, Word file, handwritten scan), please use <a href="mufti-review.html">the Mufti Review hub</a> instead.</p>
+    </div>
+
+    <!--
+      Netlify Forms requirements met below:
+        • <form name="mufti-review" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        • hidden <input type="hidden" name="form-name" value="mufti-review">
+        • honeypot field named "bot-field" (hidden via .honeypot CSS)
+        • action redirects to ?success=1 — JS swaps to thank-you panel
+      Netlify auto-detects the form on first deploy (no separate registration needed).
+    -->
+    <form
+      class="review-form"
+      name="mufti-review"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/review.html?success=1"
+    >
+      <!-- Required for Netlify Forms to route the submission -->
+      <input type="hidden" name="form-name" value="mufti-review" />
+
+      <!-- Honeypot field — bots fill this; humans don't see it -->
+      <p class="honeypot">
+        <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+      </p>
+
+      <!-- Submission metadata (auto-set by JS where possible) -->
+      <input type="hidden" name="submitted-at" id="submitted-at" value="" />
+      <input type="hidden" name="user-agent" id="user-agent" value="" />
+
+      <!-- ─── About the reviewer ─── -->
+      <fieldset>
+        <legend>About the reviewer</legend>
+
+        <div class="field">
+          <label for="reviewer-name">Full name <span class="required">*</span></label>
+          <input type="text" id="reviewer-name" name="reviewer-name" required autocomplete="name" />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="country">Country <span class="required">*</span></label>
+            <input type="text" id="country" name="country" required autocomplete="country-name" />
+          </div>
+          <div class="field">
+            <label for="institution">Institution / Madrasa / Organization <span class="optional">(optional)</span></label>
+            <input type="text" id="institution" name="institution" autocomplete="organization" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="position">Position / title <span class="optional">(e.g., Mufti, Imam, lecturer)</span></label>
+            <input type="text" id="position" name="position" />
+          </div>
+          <div class="field">
+            <label for="contact">Email or WhatsApp <span class="optional">(optional, for follow-up)</span></label>
+            <input type="text" id="contact" name="contact" autocomplete="email" />
+            <div class="help">Used only if the editorial team needs to clarify your comment. Never shared.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Permission to mention reviewer name publicly <span class="required">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label><input type="radio" name="public-credit" value="Yes" required /> Yes — credit me in the published book's acknowledgements</label>
+            <label><input type="radio" name="public-credit" value="No" /> No — keep my name internal only</label>
+          </div>
+          <div class="help">Either choice is welcome and equally appreciated. Internal-only reviewers' feedback is treated identically to credited reviewers'.</div>
+        </div>
+      </fieldset>
+
+      <!-- ─── What you're commenting on ─── -->
+      <fieldset>
+        <legend>What you are commenting on</legend>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="chapter">Chapter <span class="required">*</span></label>
+            <select id="chapter" name="chapter" required>
+              <option value="">— Select chapter —</option>
+              <option value="01 — Waking Up">01 — Waking Up</option>
+              <option value="02 — Miswak and Cleanliness">02 — Miswak and Cleanliness</option>
+              <option value="03 — Wudu and Salah">03 — Wudu and Salah</option>
+              <option value="04 — Tahajjud and Fajr">04 — Tahajjud and Fajr</option>
+              <option value="05 — Food and Drink">05 — Food and Drink</option>
+              <option value="06 — Clothing and Appearance">06 — Clothing and Appearance</option>
+              <option value="07 — Speech and Manners">07 — Speech and Manners</option>
+              <option value="08 — Family Life">08 — Family Life</option>
+              <option value="09 — Social Behavior">09 — Social Behavior</option>
+              <option value="10 — Evening and Sleep">10 — Evening and Sleep</option>
+              <option value="11 — Final Days">11 — Final Days</option>
+              <option value="Chapter-level / cross-chapter">Chapter-level / cross-chapter</option>
+              <option value="Other">Other (specify in notes)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hid">HID number <span class="optional">(e.g., HID-0056 — leave blank if not narration-specific)</span></label>
+            <input type="text" id="hid" name="hid" placeholder="HID-NNNN" pattern="^(HID-\d{4}|hid-\d{4}|)$" />
+            <div class="help">Format: <code>HID-NNNN</code>. If the issue is about chapter framing or prose, leave blank.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="issue-type">Issue type <span class="required">*</span></label>
+          <select id="issue-type" name="issue-type" required>
+            <option value="">— Select issue type —</option>
+            <option value="Authenticity">Authenticity (the narration itself)</option>
+            <option value="Hadith number">Hadith number (citation correction)</option>
+            <option value="Translation (English)">Translation — English meaning</option>
+            <option value="Bangla wording">Bangla wording / register</option>
+            <option value="Fiqh wording">Fiqh wording (wājib / farḍ / sunnah / makrūh / ḥarām etc.)</option>
+            <option value="Context">Missing or wrong context</option>
+            <option value="Inference vs hadith">Inference blurred with direct hadith</option>
+            <option value="General comment">General comment / framing / suggestion</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Severity <span class="required">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label><input type="radio" name="severity" value="Minor" required /> <span class="severity-minor">Minor</span> — polish / wording</label>
+            <label><input type="radio" name="severity" value="Medium" /> <span class="severity-medium">Medium</span> — substantive, fix before advancing</label>
+            <label><input type="radio" name="severity" value="Critical" /> <span class="severity-critical">Critical</span> — must be fixed; chapter blocked</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ─── The comment ─── -->
+      <fieldset>
+        <legend>The comment</legend>
+
+        <div class="field">
+          <label for="current-wording">Current wording / location <span class="required">*</span></label>
+          <textarea id="current-wording" name="current-wording" required placeholder="Paste the line from the chapter, or describe the location (e.g., 'paragraph after HID-0057' or 'Bangla translation of HID-0058')."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="suggested-correction">Suggested correction <span class="optional">(your preferred wording, or "remove", or "see notes")</span></label>
+          <textarea id="suggested-correction" name="suggested-correction" placeholder="What should it say instead? Or write 'REMOVE' if the section/narration should be cut."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="notes">Notes / reasoning <span class="optional">(optional)</span></label>
+          <textarea id="notes" name="notes" placeholder="Reference to a specific edition, hadith grader, scholarly opinion, or anything else that helps the editorial team apply the correction."></textarea>
+        </div>
+      </fieldset>
+
+      <!-- ─── Verdict ─── -->
+      <fieldset>
+        <legend>Your verdict on this item</legend>
+
+        <div class="field">
+          <label>Verdict <span class="required">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label><input type="radio" name="verdict" value="Approved" required /> Approved (no change needed)</label>
+            <label><input type="radio" name="verdict" value="Needs edit" /> Needs edit (apply the correction above)</label>
+            <label><input type="radio" name="verdict" value="Remove" /> Remove (cut this from the manuscript)</label>
+            <label><input type="radio" name="verdict" value="Needs further review" /> Needs further review</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="submit-row">
+        <button type="reset" class="reset-btn">Reset form</button>
+        <button type="submit">Submit review</button>
+      </div>
+    </form>
+
+    <p style="font-size: 13px; color: var(--ink-muted); text-align: center; margin-top: 16px;">
+      Submissions are sent to the editorial team via Netlify. Each submission is matched to its chapter / HID and applied to the manuscript per your verdict.<br>
+      Need to send a longer, structured review? Use the <a href="../scholar_review/review_feedback_template.md">multi-item feedback template</a>.
+    </p>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="mufti-review.html">Mufti Review</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
+</footer>
+
+<script src="assets/js/chapters-data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+  // ─── Page logic for review.html ─────────────────────────────
+  (function () {
+    var params = new URLSearchParams(location.search);
+
+    // 1. Success state: ?success=1 means a submission just completed.
+    if (params.get("success") === "1") {
+      var panel = document.getElementById("form-panel");
+      var ty = document.getElementById("thankyou");
+      if (panel) panel.hidden = true;
+      if (ty) ty.hidden = false;
+      // Scroll the thank-you panel into view
+      if (ty && ty.scrollIntoView) ty.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    // 2. Prefill chapter if ?ch=NN was passed (from "Review this chapter" button)
+    var chParam = params.get("ch");
+    if (chParam) {
+      var sel = document.getElementById("chapter");
+      if (sel) {
+        // Find the option whose value starts with the chapter number
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value.indexOf(chParam + " —") === 0) {
+            sel.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    // 3. Prefill HID if ?hid=HID-NNNN was passed
+    var hidParam = params.get("hid");
+    if (hidParam) {
+      var hidIn = document.getElementById("hid");
+      if (hidIn) hidIn.value = hidParam;
+    }
+
+    // 4. Fill hidden metadata
+    var subAt = document.getElementById("submitted-at");
+    if (subAt) subAt.value = new Date().toISOString();
+    var uaIn = document.getElementById("user-agent");
+    if (uaIn) uaIn.value = navigator.userAgent || "";
+  })();
+</script>
+</body>
+</html>
