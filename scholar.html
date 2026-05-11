@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Scholar review information — Nobiji Pro">
+  <meta name="robots" content="noindex">
+  <title>Scholar Review — Nobiji Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/reader.css">
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">Nobiji <span class="ornament">❦</span> Pro</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">Menu</button>
+    <div class="site-nav-links">
+      <a href="read-en.html">English</a>
+      <a href="read-bn.html">বাংলা</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="scholar.html" class="academic-only">Scholar Review</a>
+      <a href="status.html" class="academic-only">Status</a>
+      <button class="theme-toggle" type="button">☾ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+<div class="prose">
+
+  <h1>Scholar Review</h1>
+  <p class="lead">A short orientation for reviewing scholars: what the system is, how flags work, how to return corrections.</p>
+
+  <h2>1. What you are reviewing</h2>
+  <p>Each chapter draft is paired with a <em>scholar packet</em> that contains: a one-paragraph chapter summary; a claim summary; the full citation block for every <span class="hid">HID</span>; disputed points and weak narrations encountered; AI-assisted translations needing approval; open questions specifically for you; and a blank response template at the end.</p>
+  <p>You do <strong>not</strong> need to write your own document. Fill in §10 of the packet — that is the deliverable.</p>
+
+  <h2>2. The HID system</h2>
+  <p>Every narration the project uses has a stable identifier: <span class="hid">HID-NNNN</span>. The single canonical record lives in <code>references/hadith_index.md</code>. Chapters cite by HID; one narration → one HID, used across the whole book consistently.</p>
+
+  <h2>3. The flags — what they mean</h2>
+  <p>Inline next to every citation you will see one or more flags in [BRACKETS]. They are <em>features</em>, not noise.</p>
+
+  <ul style="list-style:none; padding:0;">
+    <li style="margin: 8px 0;"><span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span> — Default on draft entries; awaiting your sign-off.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-human">HUMAN REVIEW RECOMMENDED</span> — The translation is AI-assisted; please approve, replace, or specify a published translator.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-translation">TRANSLATION REVIEW</span> — Translation has reasonable AI default but needs your eye.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-deferred">TRANSLATION DEFERRED</span> — A fiqh-loaded Arabic term (<em>wājib</em>, <em>farḍ</em>, etc.) is preserved in Arabic. Please specify English and Bangla wording from scratch.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-fiqh">FIQH REVIEW</span> — The narration carries ruling-form language. Please confirm the chapter avoids implicit fatwa.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-historical">HISTORICAL REVIEW</span> — Tier-3 source (Shamail / seerah-leaning) used as primary. Please confirm framing.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-grade">GRADE DISPUTED</span> — Graders disagree; please indicate inclusion proportionality.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-name">NAME PROVISIONAL</span> — A glossary entry awaits your canonical-form confirmation.</li>
+    <li style="margin: 8px 0;"><span class="tag tag-context">CONTEXT REVIEW REQUIRED</span> — The narration is bound to a specific event; please confirm general application.</li>
+  </ul>
+
+  <h2>4. How to return your corrections</h2>
+  <p>The packet's response template (§10) is your workspace. Per claim:</p>
+  <ul>
+    <li><strong>Verdict:</strong> APPROVED / APPROVED WITH EDITS / NEEDS REWORK / REJECT.</li>
+    <li><strong>Edits and additions:</strong> the wording you would prefer.</li>
+    <li><strong>Translation approvals or replacements:</strong> per HID, the wording or named published translator.</li>
+    <li><strong>Canonical-name decisions:</strong> lock as suggested or substitute.</li>
+    <li><strong>Overall verdict</strong>, signature, date, affiliation.</li>
+  </ul>
+  <p>Save your response in <code>scholar_review/feedback/&lt;chapter&gt;.feedback.md</code>, or hand it back in any format and the editorial team will transcribe.</p>
+
+  <h2>5. Approval workflow</h2>
+  <p>After approval, the chapter moves to <code>scholar_review/approved/</code>; HIDs you approved become eligible for HIGH confidence; cleared tags drop from citations on the next render. After "needs rework," the chapter returns to <code>drafts/</code>; flagged sections are revised; the packet is re-prepared with your prior feedback referenced.</p>
+
+  <h2>6. The confidence ceiling</h2>
+  <p>Every HID currently sits at <strong>MEDIUM</strong> confidence. This is not an admission of weakness — it is the system honestly reporting the bound of its own checking. The authenticity gate caps confidence at MEDIUM until Arabic wording is verified against a published edition. Your scholar approval, paired with a translator lock, is what allows promotion to HIGH.</p>
+
+  <div class="ornament-divider">❦</div>
+
+  <h2>What you absolutely should not be asked to do</h2>
+  <p>If you ever receive a packet that asks you to approve a fabricated narration, a translation that elides the meaning of a fiqh term, a chapter framing that issues fatwa under cover of description, or a chapter that quietly drops <span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span> tags — please refuse and notify the project. The system is built to make those asks impossible, but no system is perfect.</p>
+
+  <p style="text-align: center; margin-top: 48px; color: var(--ink-soft); font-style: italic;">A smaller, fully-verified book is better than a larger book with even one fabricated narration. Your time is gratefully received.</p>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
+</footer>
+
+<script src="assets/js/chapters-data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

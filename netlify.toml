@@ -1,0 +1,69 @@
+# Nobiji Pro — Manuscript Review Website
+# Netlify configuration
+
+[build]
+  publish = "."
+  # Build command copies drafts/{english,bangla}/ into web_manuscript/content/
+  # Run from this directory. Skip the build (publish content/ as-is) by
+  # leaving command empty; the content folder is committed alongside.
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Force HTTPS, sane caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Long cache for static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Markdown content: short cache so updates appear quickly
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+    Content-Type = "text/markdown; charset=utf-8"
+
+# Pretty URLs — strip .html extension
+[[redirects]]
+  from = "/read"
+  to = "/read.html"
+  status = 200
+
+[[redirects]]
+  from = "/read-en"
+  to = "/read-en.html"
+  status = 200
+
+[[redirects]]
+  from = "/read-bn"
+  to = "/read-bn.html"
+  status = 200
+
+[[redirects]]
+  from = "/chapter/*"
+  to = "/chapter.html"
+  status = 200
+
+[[redirects]]
+  from = "/scholar"
+  to = "/scholar.html"
+  status = 200
+
+[[redirects]]
+  from = "/glossary"
+  to = "/glossary.html"
+  status = 200
+
+[[redirects]]
+  from = "/status"
+  to = "/status.html"
+  status = 200

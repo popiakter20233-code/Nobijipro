@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="The Daily Life of Prophet Muhammad ﷺ — a bilingual Islamic manuscript in preparation. Manuscript review interface, draft state.">
+  <meta name="robots" content="noindex">
+  <title>Nobiji Pro — Manuscript Review</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>
+    // Apply theme + mode synchronously to prevent FOUC
+    (function () {
+      try {
+        var t = localStorage.getItem("nobiji-theme");
+        if (!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) t = "dark";
+        if (t === "dark") document.documentElement.setAttribute("data-theme", "dark");
+        var p = new URLSearchParams(location.search);
+        var m = p.get("mode");
+        if (m === "academic" || m === "review") { localStorage.setItem("nobiji-mode", "academic"); m = "academic"; }
+        else if (m === "public" || m === "reader") { localStorage.setItem("nobiji-mode", "public"); m = "public"; }
+        else { m = localStorage.getItem("nobiji-mode"); }
+        document.documentElement.setAttribute("data-mode", m === "academic" ? "academic" : "public");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">Nobiji <span class="ornament">❦</span> Pro</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">Menu</button>
+    <div class="site-nav-links">
+      <a href="read-en.html">English</a>
+      <a href="read-bn.html">বাংলা</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="scholar.html" class="academic-only">Scholar Review</a>
+      <a href="status.html" class="academic-only">Status</a>
+      <button class="theme-toggle" type="button">☾ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+
+  <section class="hero">
+    <div class="ornament-row">❦ &nbsp; ❦ &nbsp; ❦</div>
+    <h1>The Daily Life of Prophet Muhammad ﷺ</h1>
+    <div class="subtitle">নবী মুহাম্মাদ ﷺ-এর দৈনন্দিন জীবন</div>
+    <p class="tagline">A bilingual reading of the Prophet ﷺ's daily life — drawn only from authentic narrations, walked through quietly, chapter by chapter.</p>
+  </section>
+
+  <div class="ms-banner academic-only" role="note">
+    <span class="icon">⚠</span>
+    <div>
+      <strong>Editorial mode — draft state.</strong><br>
+      You are viewing the internal review interface. Every cited narration sits at MEDIUM confidence; translations are AI-assisted; chapter tags are visible. Switch to reader mode from the footer.
+    </div>
+  </div>
+
+  <div data-continue-reading hidden></div>
+
+  <h2 style="font-family: var(--font-en-serif); color: var(--accent); margin-top: 48px; font-size: 24px; font-weight: 600;">Read the manuscript</h2>
+
+  <div class="card-grid">
+    <a class="card" href="read-en.html">
+      <div class="num">English</div>
+      <h3>Read in English</h3>
+      <p class="bn-title" style="font-family: var(--font-en-serif); font-style: italic; color: var(--ink-soft);">Nine chapters drawn from authentic narrations. Citations, honorifics, and Arabic preserved.</p>
+      <div class="meta academic-only">
+        <span>9 chapters</span>
+        <span class="pill pill-draft">Draft</span>
+      </div>
+    </a>
+
+    <a class="card" href="read-bn.html">
+      <div class="num">বাংলা</div>
+      <h3 class="bn" style="font-family: var(--font-bn);">বাংলায় পড়ুন</h3>
+      <p class="bn-title" style="font-family: var(--font-bn);">সহিহ ও গ্রহণযোগ্য হাদিসের ভিত্তিতে নয়টি অধ্যায়। উদ্ধৃতি, সম্মানসূচক শব্দ, এবং আরবি যথাযথভাবে সংরক্ষিত।</p>
+      <div class="meta academic-only">
+        <span>৯টি অধ্যায়</span>
+        <span class="pill pill-draft">Draft</span>
+      </div>
+    </a>
+
+    <a class="card academic-only" href="scholar.html">
+      <div class="num">For Scholars</div>
+      <h3>Scholar review</h3>
+      <p class="bn-title" style="font-family: var(--font-en-serif); font-style: italic; color: var(--ink-soft);">How the review system works, what flags mean, how to return corrections.</p>
+      <div class="meta">
+        <span>Reviewer guide</span>
+        <span class="pill pill-empty">Open</span>
+      </div>
+    </a>
+
+    <a class="card academic-only" href="status.html">
+      <div class="num">Project</div>
+      <h3>Manuscript status</h3>
+      <p class="bn-title" style="font-family: var(--font-en-serif); font-style: italic; color: var(--ink-soft);">Where each chapter sits in the pipeline. What is approved, what is pending.</p>
+      <div class="meta">
+        <span>Live status</span>
+        <span class="pill pill-empty">Updated</span>
+      </div>
+    </a>
+
+    <a class="card public-only" href="glossary.html">
+      <div class="num">Glossary</div>
+      <h3>Names &amp; terms</h3>
+      <p class="bn-title" style="font-family: var(--font-en-serif); font-style: italic; color: var(--ink-soft);">Canonical names, terminology, and hadith collections cited throughout the manuscript.</p>
+    </a>
+  </div>
+
+  <div class="ornament-divider">❦</div>
+
+  <div class="prose" style="margin-top: 48px;">
+    <h2 style="text-align: center;">About this manuscript</h2>
+    <p style="text-align: center; color: var(--ink-soft); font-style: italic;">A quiet, evidence-first walk through the daily life of Prophet Muhammad ﷺ — for an adult Muslim reader who wants to know how he ﷺ actually lived, with citations they can trust and prose that does not get in the way.</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p class="public-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; A bilingual manuscript of the Prophet ﷺ's daily life</p>
+  <p class="academic-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; Draft state, not for publication</p>
+  <p style="margin-top: 8px;">
+    <a href="glossary.html">Glossary</a>
+    <span class="academic-only"> &nbsp;·&nbsp; <a href="status.html">Status</a> &nbsp;·&nbsp; <a href="scholar.html">Scholar Review</a></span>
+    &nbsp;·&nbsp; <button class="mode-toggle" type="button">Editorial mode</button>
+  </p>
+</footer>
+
+<script src="assets/js/chapters-data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

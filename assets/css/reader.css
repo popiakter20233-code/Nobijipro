@@ -1,0 +1,438 @@
+/* ─────────────────────────────────────────────────────────────
+   Nobiji Pro — Reader stylesheet
+   Chapter content rendering, citation blocks, scholar tags, sidebar
+   ───────────────────────────────────────────────────────────── */
+
+/* Reading progress bar */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 60;
+  transition: width 0.05s linear;
+}
+
+/* ── Reader layout: sidebar + content ── */
+.reader-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--side-width) 1fr;
+  gap: 48px;
+  padding: 32px 24px 96px;
+}
+@media (max-width: 960px) {
+  .reader-layout { grid-template-columns: 1fr; gap: 0; padding: 16px 16px 64px; }
+}
+
+/* Sidebar */
+.reader-sidebar {
+  position: sticky;
+  top: 70px;
+  align-self: start;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  font-family: var(--font-en-sans);
+  font-size: 14px;
+  padding-right: 8px;
+}
+@media (max-width: 960px) {
+  .reader-sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--surface-soft);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+  }
+  .reader-sidebar.collapsed .sidebar-list { display: none; }
+}
+.reader-sidebar h4 {
+  font-family: var(--font-en-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-list li {
+  margin-bottom: 4px;
+}
+.sidebar-list a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  border-left: 2px solid transparent;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.sidebar-list a:hover {
+  background: var(--surface-soft);
+  color: var(--accent);
+  text-decoration: none;
+}
+.sidebar-list a.active {
+  background: var(--surface);
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+.sidebar-list .ch-num {
+  display: inline-block;
+  width: 28px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+  font-size: 12px;
+}
+.sidebar-list a.active .ch-num { color: var(--accent-soft); }
+
+.sidebar-mobile-toggle {
+  display: none;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font: inherit;
+  font-family: var(--font-en-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0 0 12px;
+}
+.sidebar-mobile-toggle::after { content: " ▾"; color: var(--ink-muted); }
+.reader-sidebar.collapsed .sidebar-mobile-toggle::after { content: " ▸"; }
+@media (max-width: 960px) {
+  .sidebar-mobile-toggle { display: block; padding: 0; margin: 0; }
+}
+
+/* Sidebar language switcher */
+.lang-switcher {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.lang-switcher a {
+  padding: 6px 14px;
+  font-family: var(--font-en-sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  border-right: 1px solid var(--rule);
+}
+.lang-switcher a:last-child { border-right: none; }
+.lang-switcher a:hover { background: var(--surface-soft); text-decoration: none; }
+.lang-switcher a.active { background: var(--accent); color: var(--paper); }
+
+/* ── Chapter content body ── */
+.reader-content {
+  max-width: var(--reading-width);
+  font-size: 19px;
+  line-height: 1.75;
+}
+@media (max-width: 720px) {
+  .reader-content { font-size: 17px; line-height: 1.7; }
+}
+[lang="bn"] .reader-content,
+.reader-content[lang="bn"] {
+  font-family: var(--font-bn);
+  font-size: 19px;
+  line-height: 1.95;
+}
+
+/* Render output: headings */
+.reader-content h1 {
+  font-family: var(--font-en-serif);
+  font-size: clamp(28px, 4.4vw, 40px);
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+[lang="bn"] .reader-content h1,
+.reader-content[lang="bn"] h1 {
+  font-family: var(--font-bn);
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.4;
+}
+.reader-content h2 {
+  font-family: var(--font-en-serif);
+  font-size: clamp(22px, 3vw, 27px);
+  font-weight: 600;
+  color: var(--accent);
+  margin: 56px 0 16px;
+  letter-spacing: -0.005em;
+}
+[lang="bn"] .reader-content h2,
+.reader-content[lang="bn"] h2 {
+  font-family: var(--font-bn);
+  font-size: clamp(20px, 2.8vw, 25px);
+}
+.reader-content h3 {
+  font-family: var(--font-en-serif);
+  font-size: clamp(19px, 2.4vw, 22px);
+  font-weight: 600;
+  color: var(--accent-soft);
+  margin: 36px 0 12px;
+  font-style: italic;
+}
+[lang="bn"] .reader-content h3,
+.reader-content[lang="bn"] h3 {
+  font-family: var(--font-bn);
+  font-style: normal;
+  font-weight: 600;
+}
+.reader-content p { margin: 0 0 1.1em; }
+.reader-content ul, .reader-content ol { padding-left: 1.4em; margin: 1em 0 1.4em; }
+.reader-content li { margin-bottom: 0.45em; }
+.reader-content em { font-style: italic; color: var(--ink); }
+.reader-content strong { font-weight: 600; color: var(--ink); }
+.reader-content hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.2em auto;
+  max-width: 200px;
+  position: relative;
+}
+.reader-content hr::after {
+  content: "❦";
+  display: block;
+  position: relative;
+  top: -14px;
+  text-align: center;
+  background: var(--paper);
+  width: 30px;
+  margin: 0 auto;
+  color: var(--accent-soft);
+  font-size: 14px;
+}
+
+/* ── Citation blockquotes (the heart of the manuscript) ── */
+.reader-content blockquote {
+  margin: 1.6em 0;
+  padding: 18px 22px 16px;
+  background: var(--surface-soft);
+  border-left: 3px solid var(--accent-soft);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 17px;
+  line-height: 1.7;
+}
+.reader-content blockquote p { margin: 0 0 0.8em; }
+.reader-content blockquote p:last-child { margin-bottom: 0; }
+
+/* Arabic text — applied automatically via JS by detecting Arabic Unicode range */
+.reader-content .ar {
+  font-family: var(--font-ar);
+  direction: rtl;
+  text-align: right;
+  font-size: 22px;
+  line-height: 2;
+  color: var(--ink);
+  margin: 6px 0 14px;
+  letter-spacing: 0;
+}
+.reader-content blockquote .ar {
+  display: block;
+  padding: 4px 0;
+}
+
+/* Citation source line — italic, smaller, muted */
+.reader-content blockquote em:last-child,
+.reader-content blockquote p:last-child em:only-child {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* Tag style — pills inside citations */
+.tag {
+  display: inline-block;
+  padding: 1px 8px;
+  font-family: var(--font-en-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  margin: 0 3px 2px 0;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.tag-scholar     { background: var(--tag-scholar-bg);     color: var(--tag-scholar-fg); }
+.tag-translation { background: var(--tag-translation-bg); color: var(--tag-translation-fg); }
+.tag-deferred    { background: var(--tag-deferred-bg);    color: var(--tag-deferred-fg); }
+.tag-fiqh        { background: var(--tag-fiqh-bg);        color: var(--tag-fiqh-fg); }
+.tag-historical  { background: var(--tag-historical-bg);  color: var(--tag-historical-fg); }
+.tag-grade       { background: var(--tag-grade-bg);       color: var(--tag-grade-fg); }
+.tag-name        { background: var(--tag-name-bg);        color: var(--tag-name-fg); }
+.tag-context     { background: var(--tag-context-bg);     color: var(--tag-context-fg); }
+.tag-human       { background: var(--tag-human-bg);       color: var(--tag-human-fg); }
+.tag-term        { background: var(--tag-name-bg);        color: var(--tag-name-fg); }
+
+/* HID reference */
+.hid {
+  display: inline-block;
+  padding: 0 6px;
+  background: var(--hid-bg);
+  color: var(--hid-fg);
+  font-family: var(--font-en-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 3px;
+  vertical-align: 1px;
+}
+
+/* Honorifics — keep them snug, slight color variation */
+.honorific {
+  font-family: var(--font-ar);
+  font-size: 0.95em;
+  color: var(--accent-soft);
+}
+
+/* Draft status banner inside chapter (rendered from MD) */
+.reader-content > blockquote:first-of-type {
+  background: var(--tag-scholar-bg);
+  color: var(--tag-scholar-fg);
+  border-left-color: currentColor;
+  font-family: var(--font-en-sans);
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 8px;
+}
+.reader-content > blockquote:first-of-type em { font-style: normal; }
+[lang="bn"] .reader-content > blockquote:first-of-type {
+  font-family: var(--font-bn);
+  font-style: normal;
+}
+
+/* ── Chapter footer: prev / next nav ── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+.chapter-nav a {
+  flex: 1;
+  display: block;
+  padding: 14px 18px;
+  background: var(--surface-soft);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  font-family: var(--font-en-sans);
+  font-size: 14px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.chapter-nav a:hover {
+  border-color: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+}
+.chapter-nav .nav-direction {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+.chapter-nav .nav-title { font-weight: 600; }
+.chapter-nav .next { text-align: right; }
+.chapter-nav .disabled { opacity: 0.4; pointer-events: none; }
+@media (max-width: 720px) {
+  .chapter-nav { flex-direction: column; }
+}
+
+/* ── Public-mode adjustments ───────────────────────────────
+   In public mode the technical residue softens: HID badges become
+   subtle (small, muted), workflow tag pills never render (filtered
+   out in reader.js), and the closing "Source & Compilation Note"
+   appears as a gentle author's note rather than a status banner.
+   ─────────────────────────────────────────────────────────── */
+[data-mode="public"] .reader-content .hid {
+  background: transparent;
+  color: var(--ink-muted);
+  padding: 0;
+  font-weight: 500;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+[data-mode="public"] .reader-content .tag {
+  display: none;
+}
+
+/* When an h2 follows an hr (the closing-note pattern) — soften it */
+.reader-content hr + h2 {
+  font-style: italic;
+  color: var(--accent-soft);
+  font-size: 19px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.reader-content hr + h2 + p {
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.7;
+}
+[data-mode="academic"] .reader-content hr + h2 {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 600;
+}
+[data-mode="academic"] .reader-content hr + h2 + p {
+  color: inherit;
+  font-style: normal;
+}
+
+/* Loading state */
+.loader {
+  text-align: center;
+  padding: 64px 16px;
+  color: var(--ink-muted);
+  font-family: var(--font-en-sans);
+  font-size: 14px;
+}
+.loader::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--accent-soft);
+  border-top-color: transparent;
+  border-radius: 50%;
+  margin-left: 8px;
+  vertical-align: -3px;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Error state */
+.load-error {
+  border: 1px solid var(--tag-deferred-bg);
+  background: var(--tag-deferred-bg);
+  color: var(--tag-deferred-fg);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  font-family: var(--font-en-sans);
+  font-size: 14px;
+}

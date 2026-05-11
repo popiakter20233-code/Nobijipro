@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manuscript status — Nobiji Pro">
+  <meta name="robots" content="noindex">
+  <title>Manuscript Status — Nobiji Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/reader.css">
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+  <style>
+    .status-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0 32px; }
+    .status-table th, .status-table td { padding: 10px 12px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    .status-table th { background: var(--surface-soft); font-family: var(--font-en-sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); font-weight: 600; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 24px 0 40px; }
+    .stat-box { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px; text-align: center; }
+    .stat-box .num { font-family: var(--font-en-serif); font-size: 32px; font-weight: 600; color: var(--accent); line-height: 1; }
+    .stat-box .label { font-family: var(--font-en-sans); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">Nobiji <span class="ornament">❦</span> Pro</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">Menu</button>
+    <div class="site-nav-links">
+      <a href="read-en.html">English</a>
+      <a href="read-bn.html">বাংলা</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="scholar.html" class="academic-only">Scholar Review</a>
+      <a href="status.html" class="academic-only">Status</a>
+      <button class="theme-toggle" type="button">☾ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+<div class="prose" style="max-width: 960px;">
+
+  <h1>Manuscript Status</h1>
+  <p class="lead">A live snapshot of where each chapter sits in the pipeline.</p>
+
+  <div class="ms-banner" role="note">
+    <span class="icon">⚠</span>
+    <div><strong>Draft manuscript — pending scholar verification.</strong> No chapter has reached <code>verified/</code>. No chapter has been exported. This is a controlled review interface.</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box"><div class="num">9</div><div class="label">Chapters drafted</div></div>
+    <div class="stat-box"><div class="num">2</div><div class="label">Chapters empty</div></div>
+    <div class="stat-box"><div class="num">55</div><div class="label">Hadith IDs</div></div>
+    <div class="stat-box"><div class="num">0</div><div class="label">Verified</div></div>
+    <div class="stat-box"><div class="num">16</div><div class="label">Scholar packets pending</div></div>
+    <div class="stat-box"><div class="num">3</div><div class="label">Batch 1 packets</div></div>
+  </div>
+
+  <h2>Chapters</h2>
+
+  <table class="status-table">
+    <thead>
+      <tr><th>#</th><th>Title</th><th>HID range</th><th>Status</th><th>Languages</th></tr>
+    </thead>
+    <tbody id="status-rows"></tbody>
+  </table>
+
+  <h2>Confidence distribution</h2>
+  <table class="status-table">
+    <thead><tr><th>Level</th><th>Count</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>HIGH</strong></td><td>0</td><td>Requires Arabic verified against published edition + scholar approval.</td></tr>
+      <tr><td><strong>MEDIUM</strong></td><td>55</td><td>All currently-stamped HIDs.</td></tr>
+      <tr><td><strong>LOW</strong></td><td>0</td><td>—</td></tr>
+      <tr><td><strong>NEEDS SCHOLAR REVIEW</strong></td><td>0 (formal verdict)</td><td>The tag travels with every MEDIUM HID inline.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Outstanding flags by type</h2>
+  <table class="status-table">
+    <thead><tr><th>Flag</th><th>Count</th><th>Resolution path</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag tag-scholar">AUTHENTICITY REVIEW</span></td><td>~16 packets</td><td>Scholar Batch 1 → 2 → 3+</td></tr>
+      <tr><td><span class="tag tag-translation">TRANSLATION REVIEW</span></td><td>~16 packets</td><td>Translator lock + scholar approval per packet</td></tr>
+      <tr><td><span class="tag tag-fiqh">FIQH REVIEW</span></td><td>~7 packets</td><td>Per-claim scholar framing decision</td></tr>
+      <tr><td><span class="tag tag-historical">HISTORICAL REVIEW</span></td><td>1 (chapter 07)</td><td>Hilyah-source framing confirmation</td></tr>
+      <tr><td><span class="tag tag-deferred">TRANSLATION DEFERRED</span></td><td>1 (HID-0049 wājib)</td><td>Scholar specifies wording from scratch</td></tr>
+      <tr><td><span class="tag tag-grade">GRADE DISPUTED</span></td><td>1 (HID-0023)</td><td>Scholar adjudicates inclusion proportionality</td></tr>
+      <tr><td><span class="tag tag-name">NAME PROVISIONAL</span></td><td>~19 names</td><td>One-pass user/scholar lock decision</td></tr>
+      <tr><td><span class="tag tag-context">CONTEXT REVIEW REQUIRED</span></td><td>0</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Pipeline checkpoints</h2>
+  <ul>
+    <li><strong>Drafts</strong> → 9 chapters in <code>drafts/english/</code> and <code>drafts/bangla/</code> (synchronized).</li>
+    <li><strong>Verified</strong> → 0 chapters. Awaits scholar return + <code>VERIFY_CHECKLIST.md</code> sign-off.</li>
+    <li><strong>Scholar review</strong> → 16 packets in <code>scholar_review/pending/</code>; 0 returned.</li>
+    <li><strong>Exports</strong> → 0. Requires CLEAN sweep from <code>10_kdp_manuscript_guard</code>.</li>
+  </ul>
+
+  <h2>What unblocks the most</h2>
+  <ol>
+    <li><strong>Translator lock</strong> in <code>config/preferred_reference_translations.md</code> — clears <code>[HUMAN REVIEW RECOMMENDED]</code> on ~90% of HIDs.</li>
+    <li><strong>Scholar Batch 1 turnaround</strong> (chapters 02 miswak, 10 sleep, 03 wudu).</li>
+    <li><strong>Glossary Tier-A lock pass</strong> — 10 well-known names in one decision pass.</li>
+    <li><strong>HID-0049 <em>wājib</em></strong> wording from scholar — first <code>[TRANSLATION DEFERRED]</code> case.</li>
+  </ol>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
+</footer>
+
+<script src="assets/js/chapters-data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function () {
+  var rows = document.getElementById("status-rows");
+  if (!rows) return;
+  var html = (window.NOBIJI_CHAPTERS || []).map(function (c) {
+    var hid = c.hidRange || "—";
+    var langs = (c.languages || []).map(function (l) { return l.toUpperCase(); }).join(" · ") || "—";
+    var pillCls = c.status === "draft" ? "pill-draft" : (c.status === "verified" ? "pill-verified" : "pill-empty");
+    return "<tr>" +
+      "<td>" + c.num + "</td>" +
+      '<td><strong>' + c.titleEn + "</strong><br><span style=\"color:var(--ink-soft);font-family:var(--font-bn);font-size:14px;\">" + c.titleBn + "</span></td>" +
+      '<td style="font-family:var(--font-en-sans);font-size:12px;color:var(--ink-soft);">' + hid + "</td>" +
+      '<td><span class="pill ' + pillCls + '">' + c.status + "</span></td>" +
+      '<td style="font-family:var(--font-en-sans);font-size:12px;color:var(--ink-soft);">' + langs + "</td>" +
+      "</tr>";
+  }).join("");
+  rows.innerHTML = html;
+})();
+</script>
+</body>
+</html>

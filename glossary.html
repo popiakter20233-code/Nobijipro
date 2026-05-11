@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Glossary — Nobiji Pro">
+  <meta name="robots" content="noindex">
+  <title>Glossary — Nobiji Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/reader.css">
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+  <style>
+    .gloss-table { width: 100%; border-collapse: collapse; margin: 16px 0 32px; font-size: 15px; }
+    .gloss-table th, .gloss-table td { padding: 10px 14px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    .gloss-table th { background: var(--surface-soft); font-family: var(--font-en-sans); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); font-weight: 600; }
+    .gloss-table td.bn { font-family: var(--font-bn); }
+    .gloss-table td.ar { font-family: var(--font-ar); direction: rtl; text-align: right; font-size: 18px; }
+    .gloss-table td.honorific-cell { font-family: var(--font-ar); }
+    /* In public mode hide the Status column entirely — readers don't need
+       to see LOCKED/PROVISIONAL/PILL distinctions. */
+    [data-mode="public"] .gloss-table th:last-child,
+    [data-mode="public"] .gloss-table td:last-child { display: none; }
+    [data-mode="public"] .glossary-public-note { display: none; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">Nobiji <span class="ornament">❦</span> Pro</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">Menu</button>
+    <div class="site-nav-links">
+      <a href="read-en.html">English</a>
+      <a href="read-bn.html">বাংলা</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="scholar.html" class="academic-only">Scholar Review</a>
+      <a href="status.html" class="academic-only">Status</a>
+      <button class="theme-toggle" type="button">☾ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+<div class="prose" style="max-width: 960px;">
+
+  <h1>Glossary</h1>
+  <p class="lead">Canonical names and key terminology used throughout the manuscript. Bangla forms shown alongside English transliteration and Arabic original.</p>
+
+  <h2>Names</h2>
+  <p class="academic-only" style="color: var(--ink-soft); font-style: italic; font-size: 15px;">Names below marked <span class="tag tag-name">PROVISIONAL</span> are auto-added by the pipeline and await user/scholar canonical-form confirmation.</p>
+
+  <table class="gloss-table">
+    <thead><tr><th>English</th><th>Bangla</th><th>Arabic</th><th>Honorific</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Prophet Muhammad</td><td class="bn">নবী মুহাম্মাদ</td><td class="ar">مُحَمَّد</td><td class="honorific-cell">ﷺ</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Allah</td><td class="bn">আল্লাহ</td><td class="ar">اللَّه</td><td class="honorific-cell">ﷻ</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Makkah</td><td class="bn">মক্কা</td><td class="ar">مَكَّة</td><td>—</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Madinah</td><td class="bn">মদিনা</td><td class="ar">المَدِينَة</td><td>—</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Aishah</td><td class="bn">আয়িশাহ</td><td class="ar">عَائِشَة</td><td class="honorific-cell">رضي الله عنها</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Abu Hurayrah</td><td class="bn">আবু হুরায়রা</td><td class="ar">أَبُو هُرَيْرَة</td><td class="honorific-cell">رضي الله عنه</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Umar ibn al-Khattab</td><td class="bn">উমর ইবনুল খাত্তাব</td><td class="ar">عُمَر بن الخَطَّاب</td><td class="honorific-cell">رضي الله عنه</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Abu Bakr</td><td class="bn">আবু বকর</td><td class="ar">أَبُو بَكْر</td><td class="honorific-cell">رضي الله عنه</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Hudhayfah ibn al-Yaman</td><td class="bn">হুযাইফা ইবনুল ইয়ামান</td><td class="ar">حُذَيْفَة بن اليَمَان</td><td class="honorific-cell">رضي الله عنه</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Bara' ibn Azib</td><td class="bn">বারা ইবনু আযিব</td><td class="ar">البَرَاء بن عَازِب</td><td class="honorific-cell">رضي الله عنه</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Uthman ibn Affan</td><td class="bn">উসমান ইবনু আফফান</td><td class="ar">عُثْمَان بن عَفَّان</td><td class="honorific-cell">رضي الله عنه</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Abdullah ibn Umar</td><td class="bn">আবদুল্লাহ ইবনু উমর</td><td class="ar">عَبْد الله بن عُمَر</td><td class="honorific-cell">رضي الله عنهما</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Anas ibn Malik</td><td class="bn">আনাস ইবনু মালিক</td><td class="ar">أَنَس بن مَالِك</td><td class="honorific-cell">رضي الله عنه</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Ibn Abbas</td><td class="bn">ইবনু আব্বাস</td><td class="ar">ابن عَبَّاس</td><td class="honorific-cell">رضي الله عنهما</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Ali ibn Abi Talib</td><td class="bn">আলী ইবনু আবি তালিব</td><td class="ar">عَلِي بن أَبِي طَالِب</td><td class="honorific-cell">رضي الله عنه</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Umm Salamah</td><td class="bn">উম্মে সালামা</td><td class="ar">أُمّ سَلَمَة</td><td class="honorific-cell">رضي الله عنها</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>Jabir ibn Abdullah</td><td class="bn">জাবির ইবনু আবদুল্লাহ</td><td class="ar">جَابِر بن عَبْد الله</td><td class="honorific-cell">رضي الله عنه</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+      <tr><td>al-Hasan ibn Ali</td><td class="bn">হাসান ইবনু আলী</td><td class="ar">الحَسَن بن عَلِي</td><td class="honorific-cell">رضي الله عنه</td><td><span class="tag tag-name">PROVISIONAL</span></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 14px; color: var(--ink-muted);">Plus 8 additional PROVISIONAL Sahabi entries (Sulayman ibn Surad, Abu Qatadah, Jarir ibn Abdullah al-Bajali, Abu Dharr al-Ghifari, Abu Sa'id al-Khudri, Shaddad ibn Aws, Abdullah ibn Mas'ud, Umar ibn Abi Salamah) — see <code>glossary/canonical_names.md</code>.</p>
+
+  <h2>Terms</h2>
+  <table class="gloss-table">
+    <thead><tr><th>English</th><th>Bangla</th><th>Arabic</th><th>Meaning</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Salah</td><td class="bn">সালাত</td><td class="ar">الصَّلَاة</td><td>The formal Islamic prayer</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Wudu</td><td class="bn">অজু</td><td class="ar">الوُضُوء</td><td>Ritual ablution before Salah</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>miswak</td><td class="bn">মিসওয়াক</td><td class="ar">المِسْوَاك</td><td>A tooth-cleaning twig</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Sunnah</td><td class="bn">সুন্নাহ</td><td class="ar">السُّنَّة</td><td>The recorded practice of the Prophet ﷺ</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>hadith</td><td class="bn">হাদিস</td><td class="ar">الحَدِيث</td><td>A narration of the Prophet ﷺ's words, actions, or approval</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Sahabah</td><td class="bn">সাহাবি / সাহাবাগণ</td><td class="ar">الصَّحَابَة</td><td>The Companions of the Prophet ﷺ</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Tahajjud</td><td class="bn">তাহাজ্জুদ</td><td class="ar">التَّهَجُّد</td><td>The voluntary night prayer</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>Fajr</td><td class="bn">ফজর</td><td class="ar">الفَجْر</td><td>The dawn prayer</td><td><span class="pill pill-verified">LOCKED</span></td></tr>
+      <tr><td>qamīṣ</td><td class="bn">কামীস</td><td class="ar">القَمِيص</td><td>A long shirt-like garment</td><td><span class="tag tag-term">PROVISIONAL</span></td></tr>
+      <tr><td>ḥibarah</td><td class="bn">হিবারা</td><td class="ar">الحِبَرَة</td><td>A striped Yemeni cloth/cloak</td><td><span class="tag tag-term">PROVISIONAL</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Hadith collections cited</h2>
+  <ul>
+    <li><strong>Sahih al-Bukhari</strong> — Imam Muhammad ibn Isma'il al-Bukhari (Tier 1)</li>
+    <li><strong>Sahih Muslim</strong> — Imam Muslim ibn al-Hajjaj (Tier 1)</li>
+    <li><strong>Sunan Abu Dawud</strong> — Imam Abu Dawud as-Sijistani (Tier 2)</li>
+    <li><strong>Jami` at-Tirmidhi</strong> — Imam at-Tirmidhi (Tier 2)</li>
+    <li><strong>Sunan an-Nasa'i</strong> — Imam Ahmad ibn Shu'ayb an-Nasa'i (Tier 2)</li>
+    <li><strong>Sunan Ibn Majah</strong> — Imam Muhammad ibn Yazid ibn Majah (Tier 2)</li>
+    <li><strong>Shamail al-Muhammadiyyah</strong> — Imam at-Tirmidhi (Tier 3, contextual)</li>
+    <li><strong>Musnad Ahmad</strong> — Imam Ahmad ibn Hanbal (used for corroboration)</li>
+  </ul>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <p class="public-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Editorial mode</button></p>
+  <p class="academic-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Editorial mode</button></p>
+</footer>
+
+<script src="assets/js/chapters-data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

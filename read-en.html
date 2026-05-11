@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="English chapter index — Nobiji Pro manuscript">
+  <meta name="robots" content="noindex">
+  <title>English Reader — Nobiji Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">Nobiji <span class="ornament">❦</span> Pro</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">Menu</button>
+    <div class="site-nav-links">
+      <a href="read-en.html">English</a>
+      <a href="read-bn.html">বাংলা</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="scholar.html" class="academic-only">Scholar Review</a>
+      <a href="status.html" class="academic-only">Status</a>
+      <button class="theme-toggle" type="button">☾ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="prose" style="text-align: center; padding-bottom: 24px;">
+    <h1>English Reader</h1>
+    <p class="lead public-only">A bilingual reading of the daily life of Prophet Muhammad ﷺ. Choose a chapter to begin.</p>
+    <p class="lead academic-only">Nine chapters in draft state. Click a chapter to begin reading.</p>
+  </div>
+
+  <div class="ms-banner academic-only" role="note">
+    <span class="icon">⚠</span>
+    <div><strong>Editorial mode.</strong> All chapters carry <code>[NEEDS SCHOLAR REVIEW]</code> and <code>[HUMAN REVIEW RECOMMENDED]</code> on every cited narration. Switch to reader mode from the footer.</div>
+  </div>
+
+  <div class="card-grid" id="chapter-grid"></div>
+</main>
+
+<footer class="site-footer">
+  <p class="public-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; A bilingual manuscript of the Prophet ﷺ's daily life</p>
+  <p class="academic-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface</p>
+  <p style="margin-top: 8px;">
+    <a href="index.html">Home</a> &nbsp;·&nbsp;
+    <a href="glossary.html">Glossary</a>
+    &nbsp;·&nbsp; <button class="mode-toggle" type="button">Editorial mode</button>
+  </p>
+</footer>
+
+<script src="assets/js/chapters-data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function () {
+  var grid = document.getElementById("chapter-grid");
+  if (!grid) return;
+  var isAcademic = document.documentElement.getAttribute("data-mode") === "academic";
+  var chapters = window.NOBIJI_CHAPTERS || [];
+  var html = chapters.map(function (c) {
+    var available = c.languages && c.languages.indexOf("en") !== -1;
+    var hidLine = c.hidRange ? c.hidRange : "—";
+    var metaHtml = isAcademic
+      ? '<div class="meta"><span>' + hidLine + '</span><span class="pill pill-' + c.status + '">' + c.status + '</span></div>'
+      : '';
+    if (available) {
+      return '<a class="card" href="chapter.html?ch=' + c.num + '&lang=en">' +
+        '<div class="num">Chapter ' + c.num + '</div>' +
+        '<h3>' + c.titleEn + '</h3>' +
+        '<p class="bn-title">' + c.titleBn + '</p>' +
+        metaHtml +
+        '</a>';
+    } else {
+      // In public mode, hide empty-chapter placeholders entirely
+      if (!isAcademic) return "";
+      return '<div class="card" style="opacity:0.5;cursor:default">' +
+        '<div class="num">Chapter ' + c.num + '</div>' +
+        '<h3>' + c.titleEn + '</h3>' +
+        '<p class="bn-title">' + c.titleBn + '</p>' +
+        '<div class="meta"><span>Not yet drafted</span><span class="pill pill-empty">empty</span></div>' +
+        '</div>';
+    }
+  }).join("");
+  grid.innerHTML = html;
+})();
+</script>
+</body>
+</html>

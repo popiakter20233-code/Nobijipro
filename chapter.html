@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Manuscript chapter — Nobiji Pro">
+  <meta name="robots" content="noindex">
+  <title>Chapter — Nobiji Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Charter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/reader.css">
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+</head>
+<body>
+
+<div class="reading-progress" aria-hidden="true"></div>
+
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="index.html" class="site-nav-brand">Nobiji <span class="ornament">❦</span> Pro</a>
+    <button class="nav-mobile-toggle" aria-label="Open menu">Menu</button>
+    <div class="site-nav-links">
+      <a href="read-en.html">English</a>
+      <a href="read-bn.html">বাংলা</a>
+      <a href="glossary.html">Glossary</a>
+      <a href="scholar.html" class="academic-only">Scholar Review</a>
+      <a href="status.html" class="academic-only">Status</a>
+      <button class="theme-toggle" type="button">☾ Dark</button>
+    </div>
+  </div>
+</nav>
+
+<div class="reader-layout">
+
+  <aside class="reader-sidebar" aria-label="Chapter navigation">
+    <!-- Sidebar populated by reader.js -->
+  </aside>
+
+  <article>
+    <h1 class="reader-title-holder" style="display:none"></h1>
+    <div class="reader-content"></div>
+    <nav class="chapter-nav" aria-label="Chapter navigation"></nav>
+  </article>
+
+</div>
+
+<footer class="site-footer">
+  <p class="public-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="glossary.html">Glossary</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Editorial mode</button></p>
+  <p class="academic-only">Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Draft manuscript &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="status.html">Status</a> &nbsp;·&nbsp; <a href="scholar.html">Scholar Review</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Editorial mode</button></p>
+</footer>
+
+<script src="assets/js/chapters-data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/reader.js"></script>
+</body>
+</html>
