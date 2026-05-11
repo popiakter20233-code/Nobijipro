@@ -1,27 +1,55 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Submit a scholar/Mufti review comment — Nobiji Pro manuscript">
+  <meta name="description" content="পর্যালোচনা মন্তব্য জমা দিন — নবীজি প্রো পাণ্ডুলিপি">
   <meta name="robots" content="noindex">
-  <title>Submit Review — Nobiji Pro</title>
+  <title>পর্যালোচনা জমা দিন — Nobiji Pro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/reader.css">
-  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}/* Review page forces academic mode so visiting Muftis see the editorial interface even from a cold link. */ if(!m){m="academic";localStorage.setItem("nobiji-mode","academic");} document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+  <script>
+    // Theme + site-mode bootstrap
+    (function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}if(!m){m="academic";localStorage.setItem("nobiji-mode","academic");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();
+    // Form-language bootstrap (defaults to Bangla; ?formlang=en overrides)
+    (function(){try{var p=new URLSearchParams(location.search);var fl=p.get("formlang");if(fl==="en"||fl==="bn"){localStorage.setItem("nobiji-form-lang",fl);}var stored=localStorage.getItem("nobiji-form-lang")||"bn";document.documentElement.setAttribute("data-form-lang",stored);}catch(e){document.documentElement.setAttribute("data-form-lang","bn");}})();
+  </script>
   <style>
-    /* Form-specific styling — keeps form clean, calm, scholarly. */
+    /* ── Bilingual label visibility ──────────────────────────── */
+    [data-form-lang="bn"] .t-en { display: none !important; }
+    [data-form-lang="en"] .t-bn { display: none !important; }
+    [data-form-lang="bn"] body, [data-form-lang="bn"] .review-form { font-family: var(--font-bn, "Hind Siliguri", system-ui, sans-serif); }
+    [data-form-lang="bn"] .review-form label,
+    [data-form-lang="bn"] .review-form legend,
+    [data-form-lang="bn"] .review-form .help,
+    [data-form-lang="bn"] .review-form input,
+    [data-form-lang="bn"] .review-form select,
+    [data-form-lang="bn"] .review-form textarea,
+    [data-form-lang="bn"] .review-form button,
+    [data-form-lang="bn"] .review-form option,
+    [data-form-lang="bn"] .thankyou,
+    [data-form-lang="bn"] .review-intro { font-family: var(--font-bn, "Hind Siliguri", system-ui, sans-serif); }
+
+    /* Language toggle */
+    .lang-toggle { display: inline-flex; gap: 0; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 18px; }
+    .lang-toggle button { background: var(--bg); color: var(--ink-soft); border: none; padding: 6px 14px; font-family: var(--font-en-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; }
+    .lang-toggle button.active { background: var(--accent); color: #fff; }
+    .lang-toggle button.bn { font-family: var(--font-bn, "Hind Siliguri", system-ui, sans-serif); font-size: 14px; }
+
+    /* Form-specific styling */
     .review-form-wrap { max-width: 760px; margin: 0 auto; }
-    .review-form { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 28px 32px; margin: 24px 0 40px; }
+    .review-form { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 28px 32px; margin: 8px 0 40px; }
     .review-form fieldset { border: none; padding: 0; margin: 0 0 28px; }
     .review-form legend { font-family: var(--font-en-sans); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 14px; padding: 0; }
+    [data-form-lang="bn"] .review-form legend { font-size: 14px; letter-spacing: 0.02em; text-transform: none; }
     .review-form .field { margin-bottom: 18px; }
     .review-form .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     @media (max-width: 600px) { .review-form .field-row { grid-template-columns: 1fr; } }
-    .review-form label { display: block; font-family: var(--font-en-sans); font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 6px; }
+    .review-form label { display: block; font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 6px; }
+    [data-form-lang="bn"] .review-form label { font-size: 15px; }
     .review-form label .required { color: var(--accent); margin-left: 2px; }
     .review-form label .optional { color: var(--ink-muted); font-weight: 400; font-style: italic; margin-left: 4px; font-size: 12px; }
     .review-form input[type="text"],
@@ -32,7 +60,6 @@
       padding: 10px 12px;
       border: 1px solid var(--rule);
       border-radius: 4px;
-      font-family: var(--font-en-serif);
       font-size: 15px;
       background: var(--bg);
       color: var(--ink);
@@ -42,58 +69,43 @@
     .review-form input[type="text"]:focus,
     .review-form input[type="email"]:focus,
     .review-form select:focus,
-    .review-form textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .review-form textarea { min-height: 90px; resize: vertical; font-family: var(--font-en-serif); }
+    .review-form textarea:focus { outline: none; border-color: var(--accent); }
+    .review-form textarea { min-height: 90px; resize: vertical; }
     .review-form .help { font-size: 12px; color: var(--ink-muted); margin-top: 4px; font-style: italic; }
+    [data-form-lang="bn"] .review-form .help { font-style: normal; font-size: 13px; }
     .review-form .radio-group { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; }
-    .review-form .radio-group label { display: flex; align-items: center; gap: 6px; font-weight: 400; font-family: var(--font-en-serif); font-size: 14px; cursor: pointer; margin: 0; }
+    .review-form .radio-group label { display: flex; align-items: center; gap: 6px; font-weight: 400; font-size: 14px; cursor: pointer; margin: 0; }
     .review-form .submit-row { margin-top: 28px; display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
     .review-form button[type="submit"] {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 12px 24px;
-      font-family: var(--font-en-sans);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      cursor: pointer;
-      transition: background 0.15s ease;
+      background: var(--accent); color: #fff; border: none; border-radius: 4px;
+      padding: 12px 28px; font-size: 15px; font-weight: 600;
+      letter-spacing: 0.02em; cursor: pointer; transition: background 0.15s ease;
     }
     .review-form button[type="submit"]:hover { background: var(--accent-soft, var(--accent)); }
     .review-form .reset-btn {
-      background: transparent;
-      color: var(--ink-muted);
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      padding: 10px 16px;
-      font-family: var(--font-en-sans);
-      font-size: 13px;
-      cursor: pointer;
+      background: transparent; color: var(--ink-muted);
+      border: 1px solid var(--rule); border-radius: 4px;
+      padding: 10px 16px; font-size: 13px; cursor: pointer;
     }
     .honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
     .severity-critical { color: #b03a2e; }
     .severity-medium { color: #b9770e; }
     .severity-minor { color: var(--ink-soft); }
 
-    /* Thank-you panel (shown after successful submit) */
+    /* Intro & thank-you panels */
+    .review-intro { margin-bottom: 12px; }
+    .review-intro h1 { margin-bottom: 8px; }
+    .review-intro .lead { color: var(--ink-soft); font-size: 16px; line-height: 1.6; }
+    [data-form-lang="bn"] .review-intro .lead { line-height: 1.8; }
     .thankyou {
-      background: var(--surface);
-      border: 1px solid var(--rule);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius);
-      padding: 32px 36px;
-      margin: 32px 0;
-      text-align: center;
+      background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent);
+      border-radius: var(--radius); padding: 32px 36px; margin: 32px 0; text-align: center;
     }
-    .thankyou h2 { margin-top: 0; color: var(--accent); font-family: var(--font-en-serif); }
-    .thankyou .salam { font-family: var(--font-en-serif); font-style: italic; color: var(--ink-soft); margin-bottom: 12px; }
+    .thankyou h2 { margin-top: 0; color: var(--accent); }
+    .thankyou .salam { font-style: italic; color: var(--ink-soft); margin-bottom: 12px; }
+    [data-form-lang="bn"] .thankyou .salam { font-style: normal; }
     .thankyou .actions { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .thankyou .actions a { padding: 10px 18px; background: var(--accent); color: #fff; text-decoration: none; border-radius: 4px; font-family: var(--font-en-sans); font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+    .thankyou .actions a { padding: 10px 18px; background: var(--accent); color: #fff; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; }
     .thankyou .actions a.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
   </style>
 </head>
@@ -119,34 +131,68 @@
 <main class="page">
 <div class="review-form-wrap">
 
-  <!-- ─── Thank-you panel (hidden by default; shown after ?success=1) ─── -->
+  <!-- ─── Thank-you panel (shown after ?success=1) ─── -->
   <div id="thankyou" class="thankyou" hidden>
-    <div class="salam">JazākAllāhu khayran al-jazā'</div>
-    <h2>Your review has been received</h2>
-    <p>Your feedback has been logged. The editorial team will read it carefully, apply the corrections you suggested, and follow up if any clarification is needed. May Allah ﷻ reward you for the time and care you have given to this work.</p>
+    <div class="salam">
+      <span class="t-bn">জাযাকাল্লাহু খাইরান আল-জাযা'</span>
+      <span class="t-en">JazākAllāhu khayran al-jazā'</span>
+    </div>
+    <h2>
+      <span class="t-bn">আপনার পর্যালোচনা গ্রহণ করা হয়েছে</span>
+      <span class="t-en">Your review has been received</span>
+    </h2>
+    <p>
+      <span class="t-bn">আপনার মন্তব্য সংরক্ষিত হয়েছে। সম্পাদকীয় দল এটি সাবধানে পড়বে, আপনার প্রস্তাবিত সংশোধন প্রয়োগ করবে, এবং কোনো বিষয় স্পষ্ট করার প্রয়োজন হলে যোগাযোগ করবে। এই কাজে আপনি যে সময় ও যত্ন দিয়েছেন আল্লাহ ﷻ আপনাকে তার পরিপূর্ণ প্রতিদান দান করুন।</span>
+      <span class="t-en">Your feedback has been logged. The editorial team will read it carefully, apply the corrections you suggested, and follow up if any clarification is needed. May Allah ﷻ reward you for the time and care you have given to this work.</span>
+    </p>
     <div class="actions">
-      <a href="review.html">Submit another comment</a>
-      <a href="mufti-review.html" class="secondary">Back to Mufti Review hub</a>
-      <a href="read-en.html" class="secondary">Continue reading</a>
+      <a href="review.html">
+        <span class="t-bn">আরেকটি মন্তব্য জমা দিন</span>
+        <span class="t-en">Submit another comment</span>
+      </a>
+      <a href="mufti-review.html" class="secondary">
+        <span class="t-bn">মুফতি পর্যালোচনা হাবে ফিরে যান</span>
+        <span class="t-en">Back to Mufti Review hub</span>
+      </a>
+      <a href="read-bn.html" class="secondary">
+        <span class="t-bn">পড়া চালিয়ে যান</span>
+        <span class="t-en">Continue reading</span>
+      </a>
     </div>
   </div>
 
   <!-- ─── Form panel ─── -->
   <div id="form-panel">
 
-    <div class="prose" style="margin-bottom: 8px;">
-      <h1 style="margin-bottom: 8px;">Submit a Review Comment</h1>
-      <p class="lead">One submission per item you want to raise. Use as many as you need — there is no submission limit. <em>JazākumullāhuKhayran</em> for the time you are giving.</p>
-      <p style="font-size: 13px; color: var(--ink-muted);">Required fields are marked <span style="color: var(--accent);">*</span>. If you prefer to send feedback by another channel (email, Word file, handwritten scan), please use <a href="mufti-review.html">the Mufti Review hub</a> instead.</p>
+    <div class="prose review-intro">
+      <div class="lang-toggle" role="group" aria-label="Form language">
+        <button type="button" class="bn active" data-set-lang="bn" aria-pressed="true">বাংলা</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">English</button>
+      </div>
+
+      <h1>
+        <span class="t-bn">পর্যালোচনা সাবমিট করুন</span>
+        <span class="t-en">Submit a Review Comment</span>
+      </h1>
+      <p class="lead">
+        <span class="t-bn">আসসালামু আলাইকুম। প্রতিটি মন্তব্যের জন্য একটি ফর্ম পূরণ করুন। যতগুলো মন্তব্য চান ততগুলো জমা দিতে পারেন — সংখ্যাগত কোনো সীমা নেই। আপনার সময় ও শ্রমের জন্য জাযাকুমুল্লাহু খাইরান।</span>
+        <span class="t-en">One submission per item you want to raise. Use as many as you need — there is no submission limit. <em>JazākumullāhuKhayran</em> for the time you are giving.</span>
+      </p>
+      <p style="font-size: 13px; color: var(--ink-muted);">
+        <span class="t-bn"><span style="color: var(--accent);">*</span> চিহ্নিত ক্ষেত্রগুলো অবশ্যই পূরণ করতে হবে। প্রকল্প সম্পর্কে পূর্ণ পরিচিতির জন্য <a href="mufti-review.html">মুফতি পর্যালোচনা হাব</a> দেখুন।</span>
+        <span class="t-en">Required fields are marked <span style="color: var(--accent);">*</span>. For a full project introduction, see <a href="mufti-review.html">the Mufti Review hub</a>.</span>
+      </p>
     </div>
 
     <!--
-      Netlify Forms requirements met below:
+      Netlify Forms requirements:
         • <form name="mufti-review" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
         • hidden <input type="hidden" name="form-name" value="mufti-review">
-        • honeypot field named "bot-field" (hidden via .honeypot CSS)
+        • honeypot field "bot-field"
         • action redirects to ?success=1 — JS swaps to thank-you panel
-      Netlify auto-detects the form on first deploy (no separate registration needed).
+      Netlify auto-detects the form on first deploy.
+      Form VALUES stay in English so the CSV schema is language-independent;
+      only the displayed LABELS switch between Bangla and English.
     -->
     <form
       class="review-form"
@@ -156,168 +202,288 @@
       data-netlify-honeypot="bot-field"
       action="/review.html?success=1"
     >
-      <!-- Required for Netlify Forms to route the submission -->
       <input type="hidden" name="form-name" value="mufti-review" />
 
-      <!-- Honeypot field — bots fill this; humans don't see it -->
+      <!-- Honeypot — bots fill, humans don't see -->
       <p class="honeypot">
         <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
       </p>
 
-      <!-- Submission metadata (auto-set by JS where possible) -->
+      <!-- Hidden metadata (auto-set by JS) -->
       <input type="hidden" name="submitted-at" id="submitted-at" value="" />
       <input type="hidden" name="user-agent" id="user-agent" value="" />
+      <input type="hidden" name="form-language" id="form-language" value="bn" />
 
       <!-- ─── About the reviewer ─── -->
       <fieldset>
-        <legend>About the reviewer</legend>
+        <legend>
+          <span class="t-bn">পর্যালোচকের তথ্য</span>
+          <span class="t-en">About the reviewer</span>
+        </legend>
 
         <div class="field">
-          <label for="reviewer-name">Full name <span class="required">*</span></label>
+          <label for="reviewer-name">
+            <span class="t-bn">পূর্ণ নাম <span class="required">*</span></span>
+            <span class="t-en">Full name <span class="required">*</span></span>
+          </label>
           <input type="text" id="reviewer-name" name="reviewer-name" required autocomplete="name" />
         </div>
 
         <div class="field-row">
           <div class="field">
-            <label for="country">Country <span class="required">*</span></label>
+            <label for="country">
+              <span class="t-bn">দেশ <span class="required">*</span></span>
+              <span class="t-en">Country <span class="required">*</span></span>
+            </label>
             <input type="text" id="country" name="country" required autocomplete="country-name" />
           </div>
           <div class="field">
-            <label for="institution">Institution / Madrasa / Organization <span class="optional">(optional)</span></label>
+            <label for="institution">
+              <span class="t-bn">প্রতিষ্ঠান / মাদরাসা / সংগঠন <span class="optional">(ঐচ্ছিক)</span></span>
+              <span class="t-en">Institution / Madrasa / Organization <span class="optional">(optional)</span></span>
+            </label>
             <input type="text" id="institution" name="institution" autocomplete="organization" />
           </div>
         </div>
 
         <div class="field-row">
           <div class="field">
-            <label for="position">Position / title <span class="optional">(e.g., Mufti, Imam, lecturer)</span></label>
+            <label for="position">
+              <span class="t-bn">পদ / উপাধি <span class="optional">(যেমন: মুফতি, ইমাম, শিক্ষক)</span></span>
+              <span class="t-en">Position / title <span class="optional">(e.g., Mufti, Imam, lecturer)</span></span>
+            </label>
             <input type="text" id="position" name="position" />
           </div>
           <div class="field">
-            <label for="contact">Email or WhatsApp <span class="optional">(optional, for follow-up)</span></label>
+            <label for="contact">
+              <span class="t-bn">ইমেইল বা হোয়াটসঅ্যাপ <span class="optional">(ঐচ্ছিক — যোগাযোগের জন্য)</span></span>
+              <span class="t-en">Email or WhatsApp <span class="optional">(optional, for follow-up)</span></span>
+            </label>
             <input type="text" id="contact" name="contact" autocomplete="email" />
-            <div class="help">Used only if the editorial team needs to clarify your comment. Never shared.</div>
+            <div class="help">
+              <span class="t-bn">শুধু সম্পাদকীয় দল আপনার মন্তব্য স্পষ্ট করার প্রয়োজন হলে ব্যবহার করবে। কখনো শেয়ার করা হবে না।</span>
+              <span class="t-en">Used only if the editorial team needs to clarify your comment. Never shared.</span>
+            </div>
           </div>
         </div>
 
         <div class="field">
-          <label>Permission to mention reviewer name publicly <span class="required">*</span></label>
+          <label>
+            <span class="t-bn">প্রকাশনায় পর্যালোচকের নাম উল্লেখ করার অনুমতি <span class="required">*</span></span>
+            <span class="t-en">Permission to mention reviewer name publicly <span class="required">*</span></span>
+          </label>
           <div class="radio-group" role="radiogroup">
-            <label><input type="radio" name="public-credit" value="Yes" required /> Yes — credit me in the published book's acknowledgements</label>
-            <label><input type="radio" name="public-credit" value="No" /> No — keep my name internal only</label>
+            <label>
+              <input type="radio" name="public-credit" value="Yes" required />
+              <span class="t-bn">হ্যাঁ — প্রকাশিত বইয়ের কৃতজ্ঞতা স্বীকারে আমার নাম রাখুন</span>
+              <span class="t-en">Yes — credit me in the published book's acknowledgements</span>
+            </label>
+            <label>
+              <input type="radio" name="public-credit" value="No" />
+              <span class="t-bn">না — আমার নাম শুধু অভ্যন্তরীণ রাখুন</span>
+              <span class="t-en">No — keep my name internal only</span>
+            </label>
           </div>
-          <div class="help">Either choice is welcome and equally appreciated. Internal-only reviewers' feedback is treated identically to credited reviewers'.</div>
+          <div class="help">
+            <span class="t-bn">দুটি বাছাই-ই সমানভাবে গ্রহণযোগ্য ও সমাদৃত। অভ্যন্তরীণ-পর্যালোচকদের মন্তব্য ও কৃতিত্বপ্রাপ্ত পর্যালোচকদের মন্তব্য সমান গুরুত্ব দিয়ে গ্রহণ করা হয়।</span>
+            <span class="t-en">Either choice is welcome and equally appreciated. Internal-only reviewers' feedback is treated identically to credited reviewers'.</span>
+          </div>
         </div>
       </fieldset>
 
       <!-- ─── What you're commenting on ─── -->
       <fieldset>
-        <legend>What you are commenting on</legend>
+        <legend>
+          <span class="t-bn">আপনি কী বিষয়ে মন্তব্য করছেন</span>
+          <span class="t-en">What you are commenting on</span>
+        </legend>
 
         <div class="field-row">
           <div class="field">
-            <label for="chapter">Chapter <span class="required">*</span></label>
+            <label for="chapter">
+              <span class="t-bn">অধ্যায় <span class="required">*</span></span>
+              <span class="t-en">Chapter <span class="required">*</span></span>
+            </label>
             <select id="chapter" name="chapter" required>
-              <option value="">— Select chapter —</option>
-              <option value="01 — Waking Up">01 — Waking Up</option>
-              <option value="02 — Miswak and Cleanliness">02 — Miswak and Cleanliness</option>
-              <option value="03 — Wudu and Salah">03 — Wudu and Salah</option>
-              <option value="04 — Tahajjud and Fajr">04 — Tahajjud and Fajr</option>
-              <option value="05 — Food and Drink">05 — Food and Drink</option>
-              <option value="06 — Clothing and Appearance">06 — Clothing and Appearance</option>
-              <option value="07 — Speech and Manners">07 — Speech and Manners</option>
-              <option value="08 — Family Life">08 — Family Life</option>
-              <option value="09 — Social Behavior">09 — Social Behavior</option>
-              <option value="10 — Evening and Sleep">10 — Evening and Sleep</option>
-              <option value="11 — Final Days">11 — Final Days</option>
-              <option value="Chapter-level / cross-chapter">Chapter-level / cross-chapter</option>
-              <option value="Other">Other (specify in notes)</option>
+              <option value="" data-bn="— অধ্যায় নির্বাচন করুন —" data-en="— Select chapter —">— অধ্যায় নির্বাচন করুন —</option>
+              <option value="01 — Waking Up" data-bn="০১ — জাগরণ" data-en="01 — Waking Up">০১ — জাগরণ</option>
+              <option value="02 — Miswak and Cleanliness" data-bn="০২ — মিসওয়াক ও পরিচ্ছন্নতা" data-en="02 — Miswak and Cleanliness">০২ — মিসওয়াক ও পরিচ্ছন্নতা</option>
+              <option value="03 — Wudu and Salah" data-bn="০৩ — অজু ও সালাত" data-en="03 — Wudu and Salah">০৩ — অজু ও সালাত</option>
+              <option value="04 — Tahajjud and Fajr" data-bn="০৪ — তাহাজ্জুদ ও ফজর" data-en="04 — Tahajjud and Fajr">০৪ — তাহাজ্জুদ ও ফজর</option>
+              <option value="05 — Food and Drink" data-bn="০৫ — পানাহার" data-en="05 — Food and Drink">০৫ — পানাহার</option>
+              <option value="06 — Clothing and Appearance" data-bn="০৬ — পোশাক ও বেশভূষা" data-en="06 — Clothing and Appearance">০৬ — পোশাক ও বেশভূষা</option>
+              <option value="07 — Speech and Manners" data-bn="০৭ — আদব ও কথা বলা" data-en="07 — Speech and Manners">০৭ — আদব ও কথা বলা</option>
+              <option value="08 — Family Life" data-bn="০৮ — পারিবারিক জীবন" data-en="08 — Family Life">০৮ — পারিবারিক জীবন</option>
+              <option value="09 — Social Behavior" data-bn="০৯ — সামাজিক আচরণ" data-en="09 — Social Behavior">০৯ — Social Behavior</option>
+              <option value="10 — Evening and Sleep" data-bn="১০ — সন্ধ্যা ও ঘুম" data-en="10 — Evening and Sleep">১০ — সন্ধ্যা ও ঘুম</option>
+              <option value="11 — Final Days" data-bn="১১ — শেষ দিনগুলো" data-en="11 — Final Days">১১ — শেষ দিনগুলো</option>
+              <option value="Chapter-level / cross-chapter" data-bn="অধ্যায়-পর্যায় / আড়াআড়ি" data-en="Chapter-level / cross-chapter">অধ্যায়-পর্যায় / আড়াআড়ি</option>
+              <option value="Other" data-bn="অন্যান্য (মন্তব্যে উল্লেখ করুন)" data-en="Other (specify in notes)">অন্যান্য (মন্তব্যে উল্লেখ করুন)</option>
             </select>
           </div>
           <div class="field">
-            <label for="hid">HID number <span class="optional">(e.g., HID-0056 — leave blank if not narration-specific)</span></label>
+            <label for="hid">
+              <span class="t-bn">HID নম্বর <span class="optional">(যেমন: HID-0056 — নির্দিষ্ট হাদিস সম্পর্কে না হলে খালি রাখুন)</span></span>
+              <span class="t-en">HID number <span class="optional">(e.g., HID-0056 — leave blank if not narration-specific)</span></span>
+            </label>
             <input type="text" id="hid" name="hid" placeholder="HID-NNNN" pattern="^(HID-\d{4}|hid-\d{4}|)$" />
-            <div class="help">Format: <code>HID-NNNN</code>. If the issue is about chapter framing or prose, leave blank.</div>
+            <div class="help">
+              <span class="t-bn">ফরম্যাট: <code>HID-NNNN</code>। অধ্যায়ের কাঠামো বা গদ্য সম্পর্কে মন্তব্য হলে খালি রাখুন।</span>
+              <span class="t-en">Format: <code>HID-NNNN</code>. If the issue is about chapter framing or prose, leave blank.</span>
+            </div>
           </div>
         </div>
 
         <div class="field">
-          <label for="issue-type">Issue type <span class="required">*</span></label>
+          <label for="issue-type">
+            <span class="t-bn">মন্তব্যের ধরন <span class="required">*</span></span>
+            <span class="t-en">Issue type <span class="required">*</span></span>
+          </label>
           <select id="issue-type" name="issue-type" required>
-            <option value="">— Select issue type —</option>
-            <option value="Authenticity">Authenticity (the narration itself)</option>
-            <option value="Hadith number">Hadith number (citation correction)</option>
-            <option value="Translation (English)">Translation — English meaning</option>
-            <option value="Bangla wording">Bangla wording / register</option>
-            <option value="Fiqh wording">Fiqh wording (wājib / farḍ / sunnah / makrūh / ḥarām etc.)</option>
-            <option value="Context">Missing or wrong context</option>
-            <option value="Inference vs hadith">Inference blurred with direct hadith</option>
-            <option value="General comment">General comment / framing / suggestion</option>
-            <option value="Other">Other</option>
+            <option value="" data-bn="— মন্তব্যের ধরন নির্বাচন করুন —" data-en="— Select issue type —">— মন্তব্যের ধরন নির্বাচন করুন —</option>
+            <option value="Authenticity" data-bn="সহিহতা / প্রামাণিকতা (হাদিস নিজেই)" data-en="Authenticity (the narration itself)">সহিহতা / প্রামাণিকতা (হাদিস নিজেই)</option>
+            <option value="Hadith number" data-bn="হাদিস নম্বর (উদ্ধৃতি সংশোধন)" data-en="Hadith number (citation correction)">হাদিস নম্বর (উদ্ধৃতি সংশোধন)</option>
+            <option value="Translation (English)" data-bn="অনুবাদ — ইংরেজি অর্থ" data-en="Translation — English meaning">অনুবাদ — ইংরেজি অর্থ</option>
+            <option value="Bangla wording" data-bn="বাংলা শব্দচয়ন / ভাষাশৈলী" data-en="Bangla wording / register">বাংলা শব্দচয়ন / ভাষাশৈলী</option>
+            <option value="Fiqh wording" data-bn="ফিকহী শব্দচয়ন (ওয়াজিব / ফরজ / সুন্নাত / মাকরূহ / হারাম ইত্যাদি)" data-en="Fiqh wording (wājib / farḍ / sunnah / makrūh / ḥarām etc.)">ফিকহী শব্দচয়ন (ওয়াজিব / ফরজ / সুন্নাত / মাকরূহ / হারাম ইত্যাদি)</option>
+            <option value="Context" data-bn="অনুপস্থিত বা ভুল প্রসঙ্গ" data-en="Missing or wrong context">অনুপস্থিত বা ভুল প্রসঙ্গ</option>
+            <option value="Inference vs hadith" data-bn="অনুমান বনাম সরাসরি হাদিস (পার্থক্য অস্পষ্ট)" data-en="Inference blurred with direct hadith">অনুমান বনাম সরাসরি হাদিস</option>
+            <option value="General comment" data-bn="সাধারণ মন্তব্য / কাঠামো / পরামর্শ" data-en="General comment / framing / suggestion">সাধারণ মন্তব্য / কাঠামো / পরামর্শ</option>
+            <option value="Other" data-bn="অন্যান্য" data-en="Other">অন্যান্য</option>
           </select>
         </div>
 
         <div class="field">
-          <label>Severity <span class="required">*</span></label>
+          <label>
+            <span class="t-bn">গুরুত্ব <span class="required">*</span></span>
+            <span class="t-en">Severity <span class="required">*</span></span>
+          </label>
           <div class="radio-group" role="radiogroup">
-            <label><input type="radio" name="severity" value="Minor" required /> <span class="severity-minor">Minor</span> — polish / wording</label>
-            <label><input type="radio" name="severity" value="Medium" /> <span class="severity-medium">Medium</span> — substantive, fix before advancing</label>
-            <label><input type="radio" name="severity" value="Critical" /> <span class="severity-critical">Critical</span> — must be fixed; chapter blocked</label>
+            <label>
+              <input type="radio" name="severity" value="Minor" required />
+              <span class="severity-minor">
+                <span class="t-bn"><strong>ছোটখাটো</strong> — শব্দচয়ন / পরিমার্জনা</span>
+                <span class="t-en"><strong>Minor</strong> — polish / wording</span>
+              </span>
+            </label>
+            <label>
+              <input type="radio" name="severity" value="Medium" />
+              <span class="severity-medium">
+                <span class="t-bn"><strong>মাঝারি</strong> — গুরুত্বপূর্ণ, এগোনোর আগে ঠিক করতে হবে</span>
+                <span class="t-en"><strong>Medium</strong> — substantive, fix before advancing</span>
+              </span>
+            </label>
+            <label>
+              <input type="radio" name="severity" value="Critical" />
+              <span class="severity-critical">
+                <span class="t-bn"><strong>জরুরি</strong> — অবশ্যই ঠিক করতে হবে; অধ্যায় আটকে থাকবে</span>
+                <span class="t-en"><strong>Critical</strong> — must be fixed; chapter blocked</span>
+              </span>
+            </label>
           </div>
         </div>
       </fieldset>
 
       <!-- ─── The comment ─── -->
       <fieldset>
-        <legend>The comment</legend>
+        <legend>
+          <span class="t-bn">মন্তব্য</span>
+          <span class="t-en">The comment</span>
+        </legend>
 
         <div class="field">
-          <label for="current-wording">Current wording / location <span class="required">*</span></label>
-          <textarea id="current-wording" name="current-wording" required placeholder="Paste the line from the chapter, or describe the location (e.g., 'paragraph after HID-0057' or 'Bangla translation of HID-0058')."></textarea>
+          <label for="current-wording">
+            <span class="t-bn">বর্তমান শব্দচয়ন / অবস্থান <span class="required">*</span></span>
+            <span class="t-en">Current wording / location <span class="required">*</span></span>
+          </label>
+          <textarea id="current-wording" name="current-wording" required
+            data-placeholder-bn="অধ্যায় থেকে লাইনটি এখানে পেস্ট করুন, অথবা অবস্থান বর্ণনা করুন (যেমন: 'HID-0057-এর পরের অনুচ্ছেদ' বা 'HID-0058-এর বাংলা অনুবাদ')।"
+            data-placeholder-en="Paste the line from the chapter, or describe the location (e.g., 'paragraph after HID-0057' or 'Bangla translation of HID-0058')."
+          ></textarea>
         </div>
 
         <div class="field">
-          <label for="suggested-correction">Suggested correction <span class="optional">(your preferred wording, or "remove", or "see notes")</span></label>
-          <textarea id="suggested-correction" name="suggested-correction" placeholder="What should it say instead? Or write 'REMOVE' if the section/narration should be cut."></textarea>
+          <label for="suggested-correction">
+            <span class="t-bn">প্রস্তাবিত সংশোধন <span class="optional">(আপনার পছন্দের শব্দচয়ন, অথবা "বাদ দিন", অথবা "মন্তব্যে দেখুন")</span></span>
+            <span class="t-en">Suggested correction <span class="optional">(your preferred wording, or "remove", or "see notes")</span></span>
+          </label>
+          <textarea id="suggested-correction" name="suggested-correction"
+            data-placeholder-bn="এর পরিবর্তে কী লেখা উচিত? অথবা যদি অংশ/হাদিসটি বাদ দেওয়া উচিত হয় তবে 'বাদ দিন' (REMOVE) লিখুন।"
+            data-placeholder-en="What should it say instead? Or write 'REMOVE' if the section/narration should be cut."
+          ></textarea>
         </div>
 
         <div class="field">
-          <label for="notes">Notes / reasoning <span class="optional">(optional)</span></label>
-          <textarea id="notes" name="notes" placeholder="Reference to a specific edition, hadith grader, scholarly opinion, or anything else that helps the editorial team apply the correction."></textarea>
+          <label for="notes">
+            <span class="t-bn">মন্তব্য / যুক্তি <span class="optional">(ঐচ্ছিক)</span></span>
+            <span class="t-en">Notes / reasoning <span class="optional">(optional)</span></span>
+          </label>
+          <textarea id="notes" name="notes"
+            data-placeholder-bn="নির্দিষ্ট সংস্করণের উল্লেখ, হাদিস বিশেষজ্ঞের রায়, কোনো আলেমের মত, অথবা সংশোধন প্রয়োগে সহায়ক অন্য যেকোনো তথ্য।"
+            data-placeholder-en="Reference to a specific edition, hadith grader, scholarly opinion, or anything else that helps the editorial team apply the correction."
+          ></textarea>
         </div>
       </fieldset>
 
       <!-- ─── Verdict ─── -->
       <fieldset>
-        <legend>Your verdict on this item</legend>
+        <legend>
+          <span class="t-bn">এই বিষয়ে আপনার সিদ্ধান্ত</span>
+          <span class="t-en">Your verdict on this item</span>
+        </legend>
 
         <div class="field">
-          <label>Verdict <span class="required">*</span></label>
+          <label>
+            <span class="t-bn">সিদ্ধান্ত <span class="required">*</span></span>
+            <span class="t-en">Verdict <span class="required">*</span></span>
+          </label>
           <div class="radio-group" role="radiogroup">
-            <label><input type="radio" name="verdict" value="Approved" required /> Approved (no change needed)</label>
-            <label><input type="radio" name="verdict" value="Needs edit" /> Needs edit (apply the correction above)</label>
-            <label><input type="radio" name="verdict" value="Remove" /> Remove (cut this from the manuscript)</label>
-            <label><input type="radio" name="verdict" value="Needs further review" /> Needs further review</label>
+            <label>
+              <input type="radio" name="verdict" value="Approved" required />
+              <span class="t-bn">অনুমোদিত (কোনো পরিবর্তন প্রয়োজন নেই)</span>
+              <span class="t-en">Approved (no change needed)</span>
+            </label>
+            <label>
+              <input type="radio" name="verdict" value="Needs edit" />
+              <span class="t-bn">সম্পাদনা প্রয়োজন (উপরের সংশোধন প্রয়োগ করুন)</span>
+              <span class="t-en">Needs edit (apply the correction above)</span>
+            </label>
+            <label>
+              <input type="radio" name="verdict" value="Remove" />
+              <span class="t-bn">বাদ দিন (পাণ্ডুলিপি থেকে এটি সরিয়ে ফেলুন)</span>
+              <span class="t-en">Remove (cut this from the manuscript)</span>
+            </label>
+            <label>
+              <input type="radio" name="verdict" value="Needs further review" />
+              <span class="t-bn">আরও পর্যালোচনা প্রয়োজন</span>
+              <span class="t-en">Needs further review</span>
+            </label>
           </div>
         </div>
       </fieldset>
 
       <div class="submit-row">
-        <button type="reset" class="reset-btn">Reset form</button>
-        <button type="submit">Submit review</button>
+        <button type="reset" class="reset-btn">
+          <span class="t-bn">রিসেট</span>
+          <span class="t-en">Reset form</span>
+        </button>
+        <button type="submit">
+          <span class="t-bn">পর্যালোচনা জমা দিন</span>
+          <span class="t-en">Submit review</span>
+        </button>
       </div>
     </form>
 
     <p style="font-size: 13px; color: var(--ink-muted); text-align: center; margin-top: 16px;">
-      Submissions are sent to the editorial team via Netlify. Each submission is matched to its chapter / HID and applied to the manuscript per your verdict.<br>
-      Need to send a longer, structured review? Use the <a href="../scholar_review/review_feedback_template.md">multi-item feedback template</a>.
+      <span class="t-bn">জমাগুলো Netlify-এর মাধ্যমে সম্পাদকীয় দলে পৌঁছায়। প্রতিটি জমা তার অধ্যায় / HID-এর সাথে মিলিয়ে আপনার সিদ্ধান্ত অনুযায়ী পাণ্ডুলিপিতে প্রয়োগ করা হয়।<br>একাধিক বিষয়ের জন্য বিস্তারিত পর্যালোচনা পাঠাতে চান? <a href="../scholar_review/review_feedback_template.md">বহু-বিষয়ক ফিডব্যাক টেমপ্লেট</a> ব্যবহার করুন।</span>
+      <span class="t-en">Submissions are sent to the editorial team via Netlify. Each submission is matched to its chapter / HID and applied to the manuscript per your verdict.<br>Need to send a longer, structured review? Use the <a href="../scholar_review/review_feedback_template.md">multi-item feedback template</a>.</span>
     </p>
   </div>
 </div>
 </main>
 
 <footer class="site-footer">
-  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="mufti-review.html">Mufti Review</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
+  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="mufti-review.html">Mufti Review</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
 </footer>
 
 <script src="assets/js/chapters-data.js"></script>
@@ -326,24 +492,67 @@
   // ─── Page logic for review.html ─────────────────────────────
   (function () {
     var params = new URLSearchParams(location.search);
+    var rootEl = document.documentElement;
 
-    // 1. Success state: ?success=1 means a submission just completed.
+    // 1. Success state
     if (params.get("success") === "1") {
       var panel = document.getElementById("form-panel");
       var ty = document.getElementById("thankyou");
       if (panel) panel.hidden = true;
       if (ty) ty.hidden = false;
-      // Scroll the thank-you panel into view
       if (ty && ty.scrollIntoView) ty.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
 
-    // 2. Prefill chapter if ?ch=NN was passed (from "Review this chapter" button)
+    // 2. Language toggle wiring
+    function applyFormLang(lang) {
+      if (lang !== "en" && lang !== "bn") lang = "bn";
+      rootEl.setAttribute("data-form-lang", lang);
+      try { localStorage.setItem("nobiji-form-lang", lang); } catch (e) {}
+
+      // Toggle button active state
+      document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
+        var isActive = btn.getAttribute("data-set-lang") === lang;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      // Rewrite <option> text contents based on language
+      document.querySelectorAll("select option").forEach(function (opt) {
+        var txt = opt.getAttribute("data-" + lang);
+        if (txt) opt.textContent = txt;
+      });
+
+      // Swap placeholders on textareas/inputs that have data-placeholder-*
+      document.querySelectorAll("[data-placeholder-bn]").forEach(function (el) {
+        var p = el.getAttribute("data-placeholder-" + lang);
+        if (p !== null) el.setAttribute("placeholder", p);
+      });
+
+      // Update the hidden form-language field
+      var flh = document.getElementById("form-language");
+      if (flh) flh.value = lang;
+
+      // Update <html lang="">
+      rootEl.setAttribute("lang", lang);
+    }
+
+    // Initial application
+    var initialLang = rootEl.getAttribute("data-form-lang") || "bn";
+    applyFormLang(initialLang);
+
+    // Hook up toggle buttons
+    document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        applyFormLang(btn.getAttribute("data-set-lang"));
+      });
+    });
+
+    // 3. Prefill chapter if ?ch=NN was passed (from "Review this chapter" button)
     var chParam = params.get("ch");
     if (chParam) {
       var sel = document.getElementById("chapter");
       if (sel) {
-        // Find the option whose value starts with the chapter number
         for (var i = 0; i < sel.options.length; i++) {
           if (sel.options[i].value.indexOf(chParam + " —") === 0) {
             sel.selectedIndex = i;
@@ -353,14 +562,14 @@
       }
     }
 
-    // 3. Prefill HID if ?hid=HID-NNNN was passed
+    // 4. Prefill HID if ?hid=HID-NNNN was passed
     var hidParam = params.get("hid");
     if (hidParam) {
       var hidIn = document.getElementById("hid");
       if (hidIn) hidIn.value = hidParam;
     }
 
-    // 4. Fill hidden metadata
+    // 5. Fill hidden metadata
     var subAt = document.getElementById("submitted-at");
     if (subAt) subAt.value = new Date().toISOString();
     var uaIn = document.getElementById("user-agent");

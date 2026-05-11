@@ -481,8 +481,16 @@ html:not([data-mode]) .academic-only {
   font-size: 16px;
   line-height: 1;
 }
+.review-chapter-fab .fab-label-bn,
+.review-chapter-fab .fab-label-en { display: none; }
+/* Reader language drives FAB label — set by reader.js via html[lang] */
+html[lang="bn"] .review-chapter-fab .fab-label-bn { display: inline; font-family: var(--font-bn, "Hind Siliguri", system-ui, sans-serif); }
+html[lang="en"] .review-chapter-fab .fab-label-en { display: inline; }
+/* Default fallback if no lang set */
+html:not([lang="bn"]):not([lang="en"]) .review-chapter-fab .fab-label-bn { display: inline; font-family: var(--font-bn, "Hind Siliguri", system-ui, sans-serif); }
 @media (max-width: 600px) {
   .review-chapter-fab { right: 14px; bottom: 14px; padding: 10px 14px; font-size: 12px; }
-  .review-chapter-fab .fab-label { display: none; }
+  .review-chapter-fab .fab-label-bn,
+  .review-chapter-fab .fab-label-en { display: none !important; }
   .review-chapter-fab .fab-icon { font-size: 20px; }
 }

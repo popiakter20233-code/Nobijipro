@@ -1,40 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mufti Review hub — Nobiji Pro. The single starting page for reviewing Muftis and scholars.">
+  <meta name="description" content="নবীজির দৈনন্দিন জীবন — মুফতি ও আলিমদের পর্যালোচনার জন্য Phase 1 আমন্ত্রণ। Mufti & Scholar review hub for the Sunnah manuscript.">
   <meta name="robots" content="noindex">
-  <title>Mufti Review — Nobiji Pro</title>
+  <title>মুফতি পর্যালোচনা · Mufti Review — নবীজির দৈনন্দিন জীবন</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/reader.css">
-  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}/* Mufti Review page forces academic mode so visiting muftis see the full review interface even from a cold link. */ if(!m){m="academic";localStorage.setItem("nobiji-mode","academic");} document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}if(!m){m="academic";localStorage.setItem("nobiji-mode","academic");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
   <style>
-    .mufti-hero { background: linear-gradient(135deg, var(--accent-soft, var(--accent)) 0%, var(--accent) 100%); color: #fff; padding: 48px 32px; border-radius: var(--radius); margin-bottom: 32px; text-align: center; }
-    .mufti-hero h1 { color: #fff; margin: 0 0 12px; font-size: 32px; }
-    .mufti-hero .salam { font-family: var(--font-en-serif); font-style: italic; font-size: 18px; opacity: 0.95; margin-bottom: 8px; }
-    .mufti-hero p { color: #fff; opacity: 0.95; max-width: 640px; margin: 12px auto 0; }
-    .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 24px 0; }
-    .doc-card { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 20px 22px; text-decoration: none; color: inherit; transition: transform 0.15s ease, border-color 0.15s ease; display: block; }
-    .doc-card:hover { transform: translateY(-2px); border-left-color: var(--accent-soft, var(--accent)); }
-    .doc-card .num { font-family: var(--font-en-sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
-    .doc-card h3 { margin: 6px 0 8px; font-size: 18px; font-family: var(--font-en-serif); }
-    .doc-card .desc { color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
-    .doc-card .path { font-family: monospace; font-size: 11px; color: var(--ink-muted); margin-top: 10px; }
-    .chapter-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 20px 0; }
-    .chapter-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px; text-decoration: none; color: inherit; }
-    .chapter-card:hover { border-color: var(--accent); }
-    .chapter-card .ch-num { font-family: var(--font-en-sans); font-size: 12px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-    .chapter-card h4 { margin: 4px 0 6px; font-family: var(--font-en-serif); font-size: 16px; }
-    .chapter-card .ch-bn { font-family: var(--font-bn); color: var(--ink-soft); font-size: 14px; margin-bottom: 8px; }
-    .chapter-card .ch-meta { font-size: 12px; color: var(--ink-muted); }
-    .chapter-card .ch-meta a { color: var(--ink-soft); margin-right: 10px; }
-    .review-steps { counter-reset: stp; padding-left: 0; list-style: none; }
-    .review-steps li { counter-increment: stp; padding: 14px 18px 14px 56px; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; position: relative; }
-    .review-steps li::before { content: counter(stp); position: absolute; left: 16px; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 600; text-align: center; line-height: 28px; font-family: var(--font-en-sans); }
+    /* Bangla-first body */
+    body, .prose, .mufti-hero, .check-list, .chapter-list, .step-list { font-family: var(--font-bn, "Hind Siliguri", system-ui, sans-serif); }
+    .mufti-hero { background: linear-gradient(135deg, var(--accent-soft, var(--accent)) 0%, var(--accent) 100%); color: #fff; padding: 56px 32px; border-radius: var(--radius); margin-bottom: 32px; text-align: center; }
+    .mufti-hero .salam { font-family: var(--font-bn, "Hind Siliguri"); font-size: 20px; opacity: 0.95; margin-bottom: 14px; }
+    .mufti-hero h1 { color: #fff; margin: 0 0 16px; font-size: 34px; line-height: 1.3; }
+    .mufti-hero .lead-bn { color: #fff; font-size: 18px; line-height: 1.85; max-width: 720px; margin: 12px auto 0; }
+    .mufti-hero .lead-en { color: #fff; opacity: 0.85; font-size: 14px; line-height: 1.6; max-width: 680px; margin: 14px auto 0; font-family: var(--font-en-serif); font-style: italic; }
+    .hero-buttons { margin-top: 26px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary, .btn-secondary, .btn-ghost { padding: 14px 26px; border-radius: 6px; text-decoration: none; font-family: var(--font-bn, "Hind Siliguri"); font-size: 16px; font-weight: 700; display: inline-block; }
+    .btn-primary { background: #fff; color: var(--accent); }
+    .btn-secondary { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.4); font-weight: 600; font-size: 14px; padding: 14px 22px; }
+    .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.6); font-weight: 600; font-size: 14px; padding: 14px 22px; }
+    /* Section blocks */
+    .section { margin: 40px 0; padding: 28px 30px; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); }
+    .section h2 { font-family: var(--font-bn, "Hind Siliguri"); color: var(--accent); margin: 0 0 14px; font-size: 24px; font-weight: 700; }
+    .section h2 .en-sub { font-family: var(--font-en-serif); font-style: italic; font-size: 14px; font-weight: 400; color: var(--ink-muted); margin-left: 8px; }
+    .section p { font-size: 16px; line-height: 1.85; color: var(--ink); }
+    .section .en-note { font-family: var(--font-en-serif); font-style: italic; font-size: 13px; color: var(--ink-muted); margin-top: 10px; line-height: 1.6; }
+    /* Check list */
+    .check-list { list-style: none; padding: 0; margin: 14px 0; }
+    .check-list li { padding: 10px 0 10px 36px; position: relative; font-size: 16px; line-height: 1.7; border-bottom: 1px dashed var(--rule); }
+    .check-list li:last-child { border-bottom: none; }
+    .check-list li::before { content: "✓"; position: absolute; left: 4px; top: 12px; color: var(--accent); font-weight: 700; font-size: 16px; }
+    /* Step list */
+    .step-list { counter-reset: stp; list-style: none; padding: 0; margin: 14px 0; }
+    .step-list li { counter-increment: stp; padding: 14px 18px 14px 56px; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius); margin-bottom: 10px; position: relative; font-size: 16px; line-height: 1.7; }
+    .step-list li::before { content: counter(stp); position: absolute; left: 16px; top: 14px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; text-align: center; line-height: 28px; font-family: var(--font-en-sans); }
+    /* Chapter cards */
+    .chapter-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 18px 0; }
+    .chapter-card { background: var(--bg); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 18px 20px; text-decoration: none; color: inherit; display: block; transition: transform 0.15s ease; }
+    .chapter-card:hover { transform: translateY(-2px); }
+    .chapter-card .ch-num { font-family: var(--font-en-sans); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+    .chapter-card h4 { font-family: var(--font-bn, "Hind Siliguri"); margin: 6px 0 4px; font-size: 18px; }
+    .chapter-card .ch-en { font-family: var(--font-en-serif); font-style: italic; color: var(--ink-muted); font-size: 13px; margin-bottom: 8px; }
+    .chapter-card .ch-meta { font-size: 13px; color: var(--ink-muted); }
+    .chapter-card .ch-meta a { color: var(--accent); margin-right: 12px; text-decoration: none; font-weight: 600; }
+    /* Submit CTA at bottom */
+    .submit-cta { text-align: center; margin: 50px 0 30px; padding: 36px; background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); }
+    .submit-cta p { font-family: var(--font-bn, "Hind Siliguri"); font-size: 17px; line-height: 1.85; color: var(--ink); margin: 0 0 18px; }
+    .submit-cta .submit-btn { background: var(--accent); color: #fff; padding: 16px 36px; border-radius: 8px; text-decoration: none; font-family: var(--font-bn, "Hind Siliguri"); font-size: 18px; font-weight: 700; display: inline-block; }
+    .submit-cta .submit-btn:hover { background: var(--accent-soft, var(--accent)); }
+    .closing { text-align: center; margin: 40px 0 20px; font-family: var(--font-bn, "Hind Siliguri"); color: var(--ink-soft); font-size: 16px; line-height: 1.7; }
   </style>
 </head>
 <body>
@@ -58,147 +78,166 @@
 
 <main class="page">
 
+  <!-- ─── HERO ─── -->
   <div class="mufti-hero">
-    <div class="salam">Assalāmu ʿalaykum wa raḥmatullāhi wa barakātuh</div>
-    <h1>Mufti Review</h1>
-    <p>This is the single page you need. Below are the four documents to read, the chapters in the first batch, and the workflow for returning feedback. <em>JazākAllāhu khayran</em> for the time you are giving to this.</p>
-    <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="review.html" style="background: #fff; color: var(--accent); padding: 12px 24px; border-radius: 6px; text-decoration: none; font-family: var(--font-en-sans); font-size: 14px; font-weight: 700; letter-spacing: 0.04em;">✎ Submit Review Comment</a>
-      <a href="chapter.html?ch=01&lang=en&mode=academic" style="background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.6); padding: 12px 24px; border-radius: 6px; text-decoration: none; font-family: var(--font-en-sans); font-size: 14px; font-weight: 600; letter-spacing: 0.04em;">Start with Chapter 01</a>
+    <div class="salam">আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহ</div>
+    <h1>নবীজির দৈনন্দিন জীবন<br><span style="font-size: 20px; font-weight: 500; opacity: 0.92;">মুফতি ও আলিমদের পর্যালোচনার আমন্ত্রণ</span></h1>
+    <p class="lead-bn">সম্মানিত মুফতি ও আলিমগণ, আস-সালামু আলাইকুম। আপনাকে এই কাজে শামিল হওয়ার আহ্বান জানাতে পেরে আমরা সম্মানিত বোধ করছি। এটি একটি চলমান সুন্নাহ-ভিত্তিক বইয়ের পর্যালোচনার প্রথম ধাপ (Phase 1)। আপনার মূল্যবান মতামত এই বইকে সঠিকতার পথে অগ্রসর হতে সাহায্য করবে, ইন শা আল্লাহ।</p>
+    <p class="lead-en">Mufti &amp; Scholar Review — Phase 1 invitation for "Nobijir Doinondin Jibon" (The Daily Life of Prophet Muhammad ﷺ). Submit corrections directly from this website, in Bangla or English. <em>JazākAllāhu khayran</em> for your time.</p>
+    <div class="hero-buttons">
+      <a href="review.html" class="btn-primary">✎ বাংলায় পর্যালোচনা জমা দিন</a>
+      <a href="review.html?formlang=en" class="btn-secondary">Submit in English</a>
+      <a href="chapter.html?ch=01&amp;lang=bn&amp;mode=academic" class="btn-ghost">অধ্যায় ০১ পড়া শুরু করুন</a>
     </div>
   </div>
 
-  <div class="prose">
+  <!-- ─── ১. প্রকল্প পরিচিতি ─── -->
+  <div class="section">
+    <h2>১. প্রকল্প পরিচিতি <span class="en-sub">· About the project</span></h2>
+    <p>"নবীজির দৈনন্দিন জীবন" একটি চলমান সুন্নাহ পাণ্ডুলিপি প্রকল্প। এখানে রাসূলুল্লাহ ﷺ-এর দৈনন্দিন আমল, আচরণ, পরিচ্ছন্নতা, সালাত, ঘুম, খাবার, পরিবার ও মানুষের সাথে আচরণ — সহিহ ও গ্রহণযোগ্য হাদিসের আলোকে সহজ বাংলায় সাজানো হচ্ছে।</p>
+    <p>প্রতিটি হাদিসের পাশে আরবি মূল পাঠ, বাংলা অনুবাদ, ইংরেজি অনুবাদ, এবং উৎস (সহিহ আল-বুখারী, সহিহ মুসলিম, সুনান, ইত্যাদি) সংযুক্ত করা হয়েছে। প্রতিটি বর্ণনার একটি প্রকল্প-অভ্যন্তরীণ পরিচিতি নম্বর আছে — যেমন <code>HID-0001</code> — যাতে সহজে মন্তব্য করা যায়।</p>
+    <p class="en-note">An ongoing Sunnah manuscript on the daily life of Prophet Muhammad ﷺ, drawn strictly from authentic narrations and presented in plain Bangla and English with Arabic preserved.</p>
+  </div>
 
-    <h2>Read these four documents, in order</h2>
-    <p class="lead">Together they take about 15 minutes to read and contain everything you need before opening your first chapter.</p>
+  <!-- ─── ২. কেন আলিম/মুফতির পর্যালোচনা দরকার ─── -->
+  <div class="section">
+    <h2>২. কেন আলিম/মুফতির পর্যালোচনা দরকার <span class="en-sub">· Why your review matters</span></h2>
+    <p>সম্পূর্ণ প্রকাশের আগে পাণ্ডুলিপির প্রতিটি অধ্যায় ও প্রতিটি হাদিস সম্মানিত আলিম-মুফতিগণের দৃষ্টিতে যাচাই হওয়া আমাদের কাছে অপরিহার্য।</p>
+    <p>আমরা চাই যেন —</p>
+    <ul class="check-list">
+      <li>কোনো জাল (মাওযূ‘) বা দুর্বল (যাঈফ) হাদিস ভুলক্রমে বইয়ে স্থান না পায়;</li>
+      <li>উদ্ধৃত হাদিসের নম্বর ও উৎস ঠিক আছে কি না তা নিশ্চিত হওয়া যায়;</li>
+      <li>অনুবাদ মূল আরবি অর্থের সাথে সঙ্গতিপূর্ণ কি না তা যাচাই হয়;</li>
+      <li>ফিকহী-সংবেদনশীল শব্দ (ওয়াজিব, ফরজ, সুন্নাত, মাকরূহ, হারাম ইত্যাদি) সঠিকভাবে ব্যবহৃত হয়েছে কি না তা পরীক্ষা হয়;</li>
+      <li>বাংলা শব্দচয়ন সাধারণ মুসলিম পাঠকের কাছে সহজবোধ্য ও আদবপূর্ণ হয়।</li>
+    </ul>
+    <p>একজন আলিমের সংশোধন এই বইয়ের পাঠকের আমলের সাথে সরাসরি জড়িত। তাই আমরা <strong>তাড়াহুড়ার চেয়ে সাবধানতাকে অগ্রাধিকার দিচ্ছি।</strong></p>
+  </div>
 
-    <div class="doc-grid">
+  <!-- ─── ৩. আপনারা কী কী যাচাই করবেন ─── -->
+  <div class="section">
+    <h2>৩. আপনারা কী কী যাচাই করবেন <span class="en-sub">· What to check</span></h2>
+    <p>প্রতিটি অধ্যায়ে নিচের বিষয়গুলি একবার চোখ বুলিয়ে নেওয়ার অনুরোধ —</p>
+    <ul class="check-list">
+      <li><strong>হাদিসের সহিহতা ও গ্রহণযোগ্যতা</strong> — প্রতিটি বর্ণনা সঠিক কি না।</li>
+      <li><strong>হাদিসের নম্বর ও উৎস</strong> — সহিহ বুখারী, সহিহ মুসলিম, সুনান প্রভৃতির রেফারেন্স ঠিক আছে কি না।</li>
+      <li><strong>হাদিসের গ্রেড</strong> — সহিহ, হাসান, যাঈফ — যা উল্লেখিত আছে তা সঠিক কি না।</li>
+      <li><strong>বাংলা অনুবাদ</strong> — অর্থ ঠিক আছে কি না, বাংলা ভাষাশৈলী সাধারণ পাঠকের জন্য সহজবোধ্য কি না।</li>
+      <li><strong>ইংরেজি অনুবাদ</strong> — সমান যাচাই, যদি আপনি ইংরেজিতে সাবলীল হন।</li>
+      <li><strong>ফিকহী শব্দ</strong> — ওয়াজিব / ফরজ / সুন্নাত / মুস্তাহাব / মাকরূহ / হারাম — এসব শব্দ সাবধানে ব্যবহৃত হয়েছে কি না।</li>
+      <li><strong>প্রসঙ্গ (সাবাব আল-উরূদ)</strong> — কোনো হাদিস তার প্রাসঙ্গিক পরিস্থিতি ছাড়া সাধারণীকরণ করা হয়েছে কি না।</li>
+      <li><strong>ব্যাখ্যা বনাম সরাসরি হাদিস</strong> — লেখকের ব্যবহারিক ব্যাখ্যা যেন হাদিসের সাথে মিশে না যায়; পাঠক যেন দুটির পার্থক্য বুঝতে পারে।</li>
+      <li><strong>আদব ও শব্দচয়ন</strong> — যে কোনো অংশ যা সম্মান বা ভাষাশৈলীতে ত্রুটিযুক্ত মনে হয়।</li>
+      <li><strong>বাদ দেওয়ার মতো কিছু</strong> — যে বাক্য, বর্ণনা বা ব্যাখ্যা বইটি বাদ দিলে ভালো হয়।</li>
+    </ul>
+  </div>
 
-      <a class="doc-card" href="../scholar_review/MUFTI_REVIEW_START_HERE.md">
-        <div class="num">Step 1 · Orientation</div>
-        <h3>Start Here</h3>
-        <div class="desc">What this project is, what the book is not, how HIDs and citations work, how to report corrections, what review you are being asked to give.</div>
-        <div class="path">scholar_review/MUFTI_REVIEW_START_HERE.md</div>
-      </a>
+  <!-- ─── ৪. কীভাবে সংশোধনী পাঠাবেন ─── -->
+  <div class="section">
+    <h2>৪. কীভাবে সংশোধনী পাঠাবেন <span class="en-sub">· How to submit corrections</span></h2>
+    <p>সংশোধনী পাঠানো খুব সহজ —</p>
+    <ol class="step-list">
+      <li>নিচের "শুরু করার জন্য অধ্যায়সমূহ" থেকে যেকোনো অধ্যায় খুলুন এবং বাংলায় পড়ুন।</li>
+      <li>প্রতিটি অধ্যায়ের নিচের ডানদিকে একটি ভাসমান বোতাম আছে — <strong>"এই অধ্যায়ে মন্তব্য করুন"</strong>। সেখানে ক্লিক করুন। অধ্যায়ের নাম স্বয়ংক্রিয়ভাবে ফর্মে বসে যাবে।</li>
+      <li>ফর্মে আপনার নাম, প্রতিষ্ঠান, অধ্যায়, HID নম্বর (যদি প্রযোজ্য হয়), বর্তমান শব্দচয়ন, প্রস্তাবিত সংশোধন, ও সিদ্ধান্ত পূরণ করুন।</li>
+      <li>"পর্যালোচনা জমা দিন" বোতামে ক্লিক করুন।</li>
+      <li>আপনি যত মন্তব্য চান ততগুলো জমা দিতে পারেন — কোনো সংখ্যাগত সীমা নেই।</li>
+    </ol>
+    <p style="font-size: 14px; color: var(--ink-muted); margin-top: 14px;">ফর্ম পূরণ করতে অসুবিধা হলে ইমেইল, হোয়াটসঅ্যাপ বা হাতে লেখা মন্তব্য পাঠানোর সুযোগও আছে — সম্পাদকীয় দলকে জানালে তারা আপনার মন্তব্য নথিভুক্ত করে নেবেন।</p>
+  </div>
 
-      <a class="doc-card" href="../scholar_review/mufti_review_checklist.md">
-        <div class="num">Step 2 · Checklist</div>
-        <h3>Mufti Review Checklist</h3>
-        <div class="desc">The structured per-chapter checklist: authenticity, hadith numbering, translation meaning, Bangla wording, fiqh-sensitive terms, inference vs direct hadith, missing context, wording, and items to remove.</div>
-        <div class="path">scholar_review/mufti_review_checklist.md</div>
-      </a>
+  <!-- ─── ৫. পর্যালোচনার প্রথম ধাপ (Phase 1) ─── -->
+  <div class="section">
+    <h2>৫. পর্যালোচনার প্রথম ধাপ (Phase 1) <span class="en-sub">· Phase 1 of review</span></h2>
+    <p>আমরা এখন <strong>পর্যালোচনার প্রথম ধাপে (Phase 1)</strong> আছি। এই ধাপে প্রাথমিকভাবে চারটি অধ্যায় সম্মানিত মুফতিদের পর্যালোচনার জন্য প্রস্তুত —</p>
+    <ul class="check-list">
+      <li>অধ্যায় ০১ — জাগরণ</li>
+      <li>অধ্যায় ০২ — মিসওয়াক ও পরিচ্ছন্নতা</li>
+      <li>অধ্যায় ০৩ — অজু ও সালাত</li>
+      <li>অধ্যায় ১০ — সন্ধ্যা ও ঘুম</li>
+    </ul>
+    <p>এই অধ্যায়গুলি সবচেয়ে কম জটিল এবং প্রায় সম্পূর্ণ সহিহ বুখারী ও সহিহ মুসলিম থেকে সংকলিত। প্রথম ধাপ সফলভাবে সমাপ্ত হলে বাকি অধ্যায়গুলি ধাপে ধাপে পর্যালোচনার জন্য পাঠানো হবে। কোনো তাড়া নেই — আপনি যত সময় চান নিতে পারেন।</p>
+  </div>
 
-      <a class="doc-card" href="../scholar_review/batch_01_mufti_pack.md">
-        <div class="num">Step 3 · The Batch</div>
-        <h3>Batch 1 Mufti Pack</h3>
-        <div class="desc">Chapters in the first batch, HID ranges, file paths, what to verify per chapter, unresolved issues, special notes.</div>
-        <div class="path">scholar_review/batch_01_mufti_pack.md</div>
-      </a>
+  <!-- ─── ৬. এই কাজের উদ্দেশ্য ─── -->
+  <div class="section">
+    <h2>৬. এই কাজের উদ্দেশ্য <span class="en-sub">· Our intention</span></h2>
+    <p>এই প্রকল্পের উদ্দেশ্য ব্যবসায়িক নয়। উদ্দেশ্য — বাংলা ভাষাভাষী মুসলিম ও নতুন মুসলিমদের জন্য সহজভাবে নবী ﷺ-এর দৈনন্দিন জীবন অনুসরণের একটি উপকারী রিসোর্স তৈরি করা।</p>
+    <p>বাংলা প্রিন্ট সংস্করণ ভবিষ্যতে <strong>বিনামূল্যে বিতরণের নিয়ত আছে, ইন শা আল্লাহ।</strong> মসজিদ, মাদরাসা, নওমুসলিম-সহায়তা সংগঠন ও আগ্রহী পাঠকদের কাছে এটি পৌঁছে দেওয়াই লক্ষ্য।</p>
+    <p>ইংরেজি সংস্করণ পরে আলাদাভাবে Amazon KDP বা অন্য পথে প্রকাশ হতে পারে — কিন্তু সেটিও মূল উদ্দেশ্যকে বাণিজ্যিকীকরণ নয়, বরং নবী ﷺ-এর সুন্নাহ অনুসরণে সহায়তা করাই থাকবে।</p>
+    <p class="en-note">This project is not commercial. Its purpose is to make an authentic, easy-to-follow resource on the Prophet's ﷺ daily life freely available to Bangla-speaking Muslims and new Muslims, in shā Allāh. Print distribution is intended to be free; the English edition may follow via KDP or another route, with the same non-commercial intent.</p>
+  </div>
 
-      <a class="doc-card" href="../scholar_review/review_feedback_template.md">
-        <div class="num">Step 4 · Feedback</div>
-        <h3>Feedback Template</h3>
-        <div class="desc">The form to fill in when returning corrections. One block per item — wording, suggested correction, severity, verdict. Use it or hand back in any format.</div>
-        <div class="path">scholar_review/review_feedback_template.md</div>
-      </a>
-
-    </div>
-
-    <div class="ornament-divider">❦</div>
-
-    <h2>Batch 1 — chapters to review</h2>
-    <p>Please review in this order. Local manuscript files in <code>drafts/english/</code> and <code>drafts/bangla/</code>; on this website use the Editorial-mode links below to see the flags inline.</p>
+  <!-- ─── ৭. শুরু করার জন্য অধ্যায়সমূহ ─── -->
+  <div class="section">
+    <h2>৭. শুরু করার জন্য অধ্যায়সমূহ <span class="en-sub">· Chapters to start with</span></h2>
+    <p>নিচের যেকোনো অধ্যায় ক্লিক করে পড়া শুরু করুন। প্রতিটি অধ্যায়ের নিচের ডানদিকে "মন্তব্য করুন" বোতাম থাকবে।</p>
 
     <div class="chapter-list">
 
-      <div class="chapter-card">
-        <div class="ch-num">Chapter 01</div>
-        <h4>Waking Up</h4>
-        <div class="ch-bn">জাগরণ</div>
-        <div class="ch-meta">HID-0056..0058 (+ HID-0046 cross-ref) · 3+1 narrations</div>
+      <a class="chapter-card" href="chapter.html?ch=01&amp;lang=bn&amp;mode=academic">
+        <div class="ch-num">অধ্যায় ০১</div>
+        <h4>জাগরণ</h4>
+        <div class="ch-en">Waking Up</div>
+        <div class="ch-meta">HID-0056..0058 (+ HID-0046) · ৪টি বর্ণনা</div>
         <div class="ch-meta">
-          <a href="chapter.html?ch=01&lang=en&mode=academic">English (editorial)</a>
-          <a href="chapter.html?ch=01&lang=bn&mode=academic">বাংলা (editorial)</a>
+          <a href="chapter.html?ch=01&amp;lang=bn&amp;mode=academic">বাংলায় পড়ুন</a>
+          <a href="chapter.html?ch=01&amp;lang=en&amp;mode=academic">English</a>
         </div>
-      </div>
+      </a>
 
-      <div class="chapter-card">
-        <div class="ch-num">Chapter 02</div>
-        <h4>Miswak and Cleanliness</h4>
-        <div class="ch-bn">মিসওয়াক ও পরিচ্ছন্নতা</div>
-        <div class="ch-meta">HID-0001..0004, HID-0059..0061 · 7 narrations</div>
+      <a class="chapter-card" href="chapter.html?ch=02&amp;lang=bn&amp;mode=academic">
+        <div class="ch-num">অধ্যায় ০২</div>
+        <h4>মিসওয়াক ও পরিচ্ছন্নতা</h4>
+        <div class="ch-en">Miswak and Cleanliness</div>
+        <div class="ch-meta">HID-0001..0004, HID-0059..0061 · ৭টি বর্ণনা</div>
         <div class="ch-meta">
-          <a href="chapter.html?ch=02&lang=en&mode=academic">English (editorial)</a>
-          <a href="chapter.html?ch=02&lang=bn&mode=academic">বাংলা (editorial)</a>
+          <a href="chapter.html?ch=02&amp;lang=bn&amp;mode=academic">বাংলায় পড়ুন</a>
+          <a href="chapter.html?ch=02&amp;lang=en&amp;mode=academic">English</a>
         </div>
-      </div>
+      </a>
 
-      <div class="chapter-card">
-        <div class="ch-num">Chapter 03</div>
-        <h4>Wudu and Salah <em style="font-size:12px;color:var(--ink-muted);">(wudu section only)</em></h4>
-        <div class="ch-bn">অজু ও সালাতের প্রস্তুতি</div>
-        <div class="ch-meta">HID-0008..0010 · 3 narrations · first <span class="tag tag-fiqh">FIQH REVIEW</span> chapter</div>
+      <a class="chapter-card" href="chapter.html?ch=03&amp;lang=bn&amp;mode=academic">
+        <div class="ch-num">অধ্যায় ০৩</div>
+        <h4>অজু ও সালাত</h4>
+        <div class="ch-en">Wudu and Salah <em style="font-size:11px;">(অজু অংশ)</em></div>
+        <div class="ch-meta">HID-0008..0010 · ৩টি বর্ণনা · ফিকহী বিষয় আছে</div>
         <div class="ch-meta">
-          <a href="chapter.html?ch=03&lang=en&mode=academic">English (editorial)</a>
-          <a href="chapter.html?ch=03&lang=bn&mode=academic">বাংলা (editorial)</a>
+          <a href="chapter.html?ch=03&amp;lang=bn&amp;mode=academic">বাংলায় পড়ুন</a>
+          <a href="chapter.html?ch=03&amp;lang=en&amp;mode=academic">English</a>
         </div>
-      </div>
+      </a>
 
-      <div class="chapter-card">
-        <div class="ch-num">Chapter 10</div>
-        <h4>Evening and Sleep</h4>
-        <div class="ch-bn">সন্ধ্যা ও ঘুম</div>
-        <div class="ch-meta">HID-0005..0007, HID-0046..0048 · 6 narrations</div>
+      <a class="chapter-card" href="chapter.html?ch=10&amp;lang=bn&amp;mode=academic">
+        <div class="ch-num">অধ্যায় ১০</div>
+        <h4>সন্ধ্যা ও ঘুম</h4>
+        <div class="ch-en">Evening and Sleep</div>
+        <div class="ch-meta">HID-0005..0007, HID-0046..0048 · ৬টি বর্ণনা</div>
         <div class="ch-meta">
-          <a href="chapter.html?ch=10&lang=en&mode=academic">English (editorial)</a>
-          <a href="chapter.html?ch=10&lang=bn&mode=academic">বাংলা (editorial)</a>
+          <a href="chapter.html?ch=10&amp;lang=bn&amp;mode=academic">বাংলায় পড়ুন</a>
+          <a href="chapter.html?ch=10&amp;lang=en&amp;mode=academic">English</a>
         </div>
-      </div>
+      </a>
 
     </div>
-
-    <p style="font-size:13px; color: var(--ink-muted);"><strong>Note:</strong> The chapter pages above default to Editorial mode (flags visible, draft banner shown). Click <strong>Reader mode</strong> in the footer at any time to see what the public reader will see.</p>
-
-    <div class="ornament-divider">❦</div>
-
-    <h2>The review workflow in six steps</h2>
-
-    <ol class="review-steps">
-      <li><strong>Read the four documents above.</strong> Step 1 (Start Here) is the most important; the others can be referenced as you work.</li>
-      <li><strong>Open chapter 01 in Editorial mode.</strong> Read the chapter end-to-end first, without taking notes. Get a feel for the chapter's framing.</li>
-      <li><strong>Open the per-chapter scholar packet</strong> for chapter 01 — <code>scholar_review/pending/01_waking_up.review.md</code>. The packet's §10 contains the structured response template for that specific chapter. (You can use either the per-chapter §10 template or the cross-chapter <code>review_feedback_template.md</code> — whichever you prefer.)</li>
-      <li><strong>Walk the checklist</strong> from <code>mufti_review_checklist.md</code>, ticking items as you go. Mark anything that fails.</li>
-      <li><strong>Record corrections</strong> in the feedback template — one block per item. Specify the HID, the issue type, the current wording, your suggested correction, severity, and verdict.</li>
-      <li><strong>Repeat for chapters 02, 03 (wudu only), 10.</strong> Then mark the overall batch verdict at the end. Return the file to the project via file drop, email, or any other agreed channel.</li>
-    </ol>
-
-    <div class="ornament-divider">❦</div>
-
-    <h2>Helpful supporting references</h2>
-    <ul>
-      <li><a href="scholar.html">Scholar Review — long-form guide</a> (background on the system, flag meanings, approval workflow)</li>
-      <li><a href="status.html">Manuscript status</a> (where each chapter sits in the pipeline)</li>
-      <li><a href="glossary.html">Glossary</a> (canonical names + Arabic terms used throughout the manuscript)</li>
-      <li><code>references/hadith_index.md</code> — the single source of truth for every HID</li>
-      <li><code>scholar_review/SCHOLAR_REVIEW_GUIDE.md</code> — the longer reference document if you want full context</li>
-    </ul>
-
-    <div class="ms-banner" role="note" style="margin-top: 40px;">
-      <span class="icon">❦</span>
-      <div>
-        <strong>What you absolutely should not be asked to do.</strong><br>
-        If any packet asks you to approve a fabricated narration, a softened fiqh translation, an implicit-fatwa framing, or a chapter quietly stripped of <span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span> tags — please refuse and notify the project. The system is built to make those asks impossible, but no system is perfect.
-      </div>
-    </div>
-
-    <p style="text-align: center; margin-top: 40px; color: var(--ink-soft); font-style: italic;">A smaller, fully-verified book is better than a larger book with even one fabricated narration. <br>Your time is gratefully received.</p>
-
   </div>
+
+  <!-- ─── ৮. Submit CTA ─── -->
+  <div class="submit-cta">
+    <p>পড়া শেষে অথবা কোনো বিষয় চোখে পড়লেই, নিচের বোতাম থেকে সংশোধনী জমা দিন। প্রতিটি মন্তব্যের জন্য একটি ফর্ম পূরণ করুন।</p>
+    <a href="review.html" class="submit-btn">✎ পর্যালোচনা সাবমিট করুন</a>
+    <p style="font-size: 13px; color: var(--ink-muted); margin-top: 14px; margin-bottom: 0;">English form: <a href="review.html?formlang=en" style="color: var(--accent);">Submit in English</a></p>
+  </div>
+
+  <div class="closing">
+    জাযাকুমুল্লাহু খাইরান। আপনার সময় ও শ্রম আল্লাহ ﷻ কবুল করুন।<br>
+    <em style="font-family: var(--font-en-serif); font-style: italic; font-size: 14px;">JazākumullāhuKhayran. May Allah ﷻ accept your time and effort.</em>
+  </div>
+
 </main>
 
 <footer class="site-footer">
-  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="scholar.html">Scholar Guide</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
+  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; মুফতি পর্যালোচনা &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="review.html">Submit Review</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
 </footer>
 
 <script src="assets/js/chapters-data.js"></script>

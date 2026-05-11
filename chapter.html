@@ -52,10 +52,12 @@
   Floating "Review this chapter" button — academic-only.
   Pre-fills the chapter parameter into the review form.
   Hidden in public reader mode via the .academic-only CSS rule.
+  Label switches based on current reader language (lang=bn|en) — set by reader.js.
 -->
-<a class="review-chapter-fab academic-only" id="review-chapter-fab" href="review.html" title="Submit a review comment on this chapter">
+<a class="review-chapter-fab academic-only" id="review-chapter-fab" href="review.html" title="এই অধ্যায়ে মন্তব্য করুন · Submit a review comment on this chapter">
   <span class="fab-icon" aria-hidden="true">✎</span>
-  <span class="fab-label">Review this chapter</span>
+  <span class="fab-label fab-label-bn">এই অধ্যায়ে মন্তব্য করুন</span>
+  <span class="fab-label fab-label-en">Review this chapter</span>
 </a>
 
 <footer class="site-footer">

@@ -1,17 +1,34 @@
 <!doctype html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Scholar review information — Nobiji Pro">
+  <meta name="description" content="স্কলার গাইড — পূর্ণ মুফতি পর্যালোচনা হাব ও পর্যালোচনা ফর্মে যান। Scholar guide — short pointer to /mufti-review and /review.">
   <meta name="robots" content="noindex">
-  <title>Scholar Review — Nobiji Pro</title>
+  <title>স্কলার গাইড · Scholar Guide — Nobiji Pro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Amiri:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/reader.css">
-  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("nobiji-theme");if(!t&&matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t==="dark")document.documentElement.setAttribute("data-theme","dark");var p=new URLSearchParams(location.search);var m=p.get("mode");if(m==="academic"||m==="review"){localStorage.setItem("nobiji-mode","academic");m="academic";}else if(m==="public"||m==="reader"){localStorage.setItem("nobiji-mode","public");m="public";}else{m=localStorage.getItem("nobiji-mode");}if(!m){m="academic";localStorage.setItem("nobiji-mode","academic");}document.documentElement.setAttribute("data-mode",m==="academic"?"academic":"public");}catch(e){}})();</script>
+  <style>
+    body, .prose { font-family: var(--font-bn, "Hind Siliguri", system-ui, sans-serif); }
+    .prose h1 { font-size: 28px; margin-bottom: 8px; }
+    .prose h2 { font-family: var(--font-bn, "Hind Siliguri"); color: var(--accent); margin-top: 32px; font-size: 22px; }
+    .prose h2 .en-sub { font-family: var(--font-en-serif); font-style: italic; font-size: 13px; font-weight: 400; color: var(--ink-muted); margin-left: 8px; }
+    .prose p { line-height: 1.85; font-size: 16px; }
+    .prose .en-note { font-family: var(--font-en-serif); font-style: italic; color: var(--ink-muted); font-size: 13px; line-height: 1.6; margin-top: 10px; }
+    .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 24px 0; }
+    .quick-links a { display: block; padding: 22px 24px; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: var(--radius); text-decoration: none; color: inherit; transition: transform 0.15s ease; }
+    .quick-links a:hover { transform: translateY(-2px); }
+    .quick-links a .label { font-family: var(--font-en-sans); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+    .quick-links a h3 { font-family: var(--font-bn, "Hind Siliguri"); font-size: 18px; margin: 6px 0 6px; }
+    .quick-links a p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+    .flag-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .flag-table td { padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    .flag-table .tag { display: inline-block; }
+  </style>
 </head>
 <body>
 
@@ -35,60 +52,56 @@
 <main class="page">
 <div class="prose">
 
-  <h1>Scholar Review</h1>
-  <p class="lead">A short orientation for reviewing scholars: what the system is, how flags work, how to return corrections.</p>
+  <h1>স্কলার গাইড <span style="font-family: var(--font-en-serif); font-size: 16px; font-style: italic; color: var(--ink-muted); font-weight: 400;">· Scholar Guide</span></h1>
+  <p class="lead">এই পাতাটি একটি সংক্ষিপ্ত পরিচিতি। পূর্ণ <strong>মুফতি পর্যালোচনার আমন্ত্রণ, প্রকল্প পরিচিতি, কী যাচাই করবেন, ও Phase 1-এর অধ্যায়সমূহ</strong> দেখতে নিচের প্রধান হাবে যান।</p>
+  <p class="en-note">This is a short orientation. For the full Mufti review hub — project introduction, what to check, how to submit corrections, and the chapters in Phase 1 — please go to <a href="mufti-review.html">/mufti-review</a>.</p>
 
-  <h2>1. What you are reviewing</h2>
-  <p>Each chapter draft is paired with a <em>scholar packet</em> that contains: a one-paragraph chapter summary; a claim summary; the full citation block for every <span class="hid">HID</span>; disputed points and weak narrations encountered; AI-assisted translations needing approval; open questions specifically for you; and a blank response template at the end.</p>
-  <p>You do <strong>not</strong> need to write your own document. Fill in §10 of the packet — that is the deliverable.</p>
+  <div class="quick-links">
+    <a href="mufti-review.html">
+      <div class="label">প্রধান হাব · Main Hub</div>
+      <h3>মুফতি পর্যালোচনা হাবে যান</h3>
+      <p>সম্পূর্ণ আমন্ত্রণ, পর্যালোচনার নির্দেশনা, ও Phase 1-এর অধ্যায়সমূহ। <em>Full Mufti Review hub.</em></p>
+    </a>
+    <a href="review.html">
+      <div class="label">ফর্ম · Form</div>
+      <h3>পর্যালোচনা সাবমিট করুন</h3>
+      <p>বাংলায় সরাসরি মন্তব্য জমা দিন। <em>Submit your review directly — Bangla form, English available.</em></p>
+    </a>
+  </div>
 
-  <h2>2. The HID system</h2>
-  <p>Every narration the project uses has a stable identifier: <span class="hid">HID-NNNN</span>. The single canonical record lives in <code>references/hadith_index.md</code>. Chapters cite by HID; one narration → one HID, used across the whole book consistently.</p>
+  <h2>পদ্ধতি সংক্ষেপে <span class="en-sub">· The system in brief</span></h2>
+  <p>এই বইয়ের প্রতিটি হাদিসের একটি প্রকল্প-অভ্যন্তরীণ পরিচিতি নম্বর আছে — যেমন <span class="hid">HID-0001</span>। প্রতিটি অধ্যায়ের সাথে সংযুক্ত উদ্ধৃতিতে আরবি মূল পাঠ, বাংলা অনুবাদ, ইংরেজি অনুবাদ, এবং উৎস (সহিহ বুখারী / মুসলিম / সুনান) যুক্ত আছে। প্রতিটি বর্ণনার পাশে কিছু <em>flag</em> থাকে — যেমন <span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span> — যা আপনার মনোযোগ আকর্ষণের জন্য রাখা হয়েছে।</p>
 
-  <h2>3. The flags — what they mean</h2>
-  <p>Inline next to every citation you will see one or more flags in [BRACKETS]. They are <em>features</em>, not noise.</p>
+  <h2>Flag-গুলির অর্থ <span class="en-sub">· What the inline flags mean</span></h2>
+  <table class="flag-table">
+    <tr><td><span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span></td><td>হাদিসের সহিহতা ও সংযুক্তির ব্যাপারে আপনার চূড়ান্ত মতামত চাওয়া হচ্ছে।</td></tr>
+    <tr><td><span class="tag tag-human">HUMAN REVIEW RECOMMENDED</span></td><td>অনুবাদটি AI-সহায়তায় তৈরি; আপনার অনুমোদন বা পরিবর্তন প্রয়োজন।</td></tr>
+    <tr><td><span class="tag tag-translation">TRANSLATION REVIEW</span></td><td>অনুবাদের একটি অংশে বিশেষ মনোযোগ চাওয়া হচ্ছে।</td></tr>
+    <tr><td><span class="tag tag-fiqh">FIQH REVIEW</span></td><td>হাদিসটিতে ফিকহী-সংবেদনশীল ভাষা আছে; কাঠামোগত উপস্থাপনা যেন ফতোয়া না হয়ে দাঁড়ায় তা যাচাই করুন।</td></tr>
+    <tr><td><span class="tag tag-name">NAME PROVISIONAL</span></td><td>সাহাবী বা স্থানের নামের বাংলা/ইংরেজি বানান অস্থায়ী — আপনার নিশ্চিতকরণ প্রয়োজন।</td></tr>
+    <tr><td><span class="tag tag-grade">GRADE DISPUTED</span></td><td>হাদিসের গ্রেড নিয়ে মুহাদ্দিসগণের মধ্যে মতপার্থক্য আছে।</td></tr>
+    <tr><td><span class="tag tag-context">CONTEXT REVIEW REQUIRED</span></td><td>হাদিসটি বিশেষ পরিস্থিতির সাথে সংযুক্ত; সাধারণীকরণ ঠিক আছে কি না যাচাই করুন।</td></tr>
+    <tr><td><span class="tag tag-deferred">TRANSLATION DEFERRED</span></td><td>ফিকহী শব্দ (যেমন <em>ওয়াজিব</em>) অনুবাদ না করে আরবিতেই রাখা হয়েছে — আপনার পছন্দের বাংলা/ইংরেজি শব্দ প্রস্তাব করুন।</td></tr>
+  </table>
 
-  <ul style="list-style:none; padding:0;">
-    <li style="margin: 8px 0;"><span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span> — Default on draft entries; awaiting your sign-off.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-human">HUMAN REVIEW RECOMMENDED</span> — The translation is AI-assisted; please approve, replace, or specify a published translator.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-translation">TRANSLATION REVIEW</span> — Translation has reasonable AI default but needs your eye.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-deferred">TRANSLATION DEFERRED</span> — A fiqh-loaded Arabic term (<em>wājib</em>, <em>farḍ</em>, etc.) is preserved in Arabic. Please specify English and Bangla wording from scratch.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-fiqh">FIQH REVIEW</span> — The narration carries ruling-form language. Please confirm the chapter avoids implicit fatwa.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-historical">HISTORICAL REVIEW</span> — Tier-3 source (Shamail / seerah-leaning) used as primary. Please confirm framing.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-grade">GRADE DISPUTED</span> — Graders disagree; please indicate inclusion proportionality.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-name">NAME PROVISIONAL</span> — A glossary entry awaits your canonical-form confirmation.</li>
-    <li style="margin: 8px 0;"><span class="tag tag-context">CONTEXT REVIEW REQUIRED</span> — The narration is bound to a specific event; please confirm general application.</li>
-  </ul>
-
-  <h2>4. How to return your corrections</h2>
-  <p>The packet's response template (§10) is your workspace. Per claim:</p>
-  <ul>
-    <li><strong>Verdict:</strong> APPROVED / APPROVED WITH EDITS / NEEDS REWORK / REJECT.</li>
-    <li><strong>Edits and additions:</strong> the wording you would prefer.</li>
-    <li><strong>Translation approvals or replacements:</strong> per HID, the wording or named published translator.</li>
-    <li><strong>Canonical-name decisions:</strong> lock as suggested or substitute.</li>
-    <li><strong>Overall verdict</strong>, signature, date, affiliation.</li>
-  </ul>
-  <p>Save your response in <code>scholar_review/feedback/&lt;chapter&gt;.feedback.md</code>, or hand it back in any format and the editorial team will transcribe.</p>
-
-  <h2>5. Approval workflow</h2>
-  <p>After approval, the chapter moves to <code>scholar_review/approved/</code>; HIDs you approved become eligible for HIGH confidence; cleared tags drop from citations on the next render. After "needs rework," the chapter returns to <code>drafts/</code>; flagged sections are revised; the packet is re-prepared with your prior feedback referenced.</p>
-
-  <h2>6. The confidence ceiling</h2>
-  <p>Every HID currently sits at <strong>MEDIUM</strong> confidence. This is not an admission of weakness — it is the system honestly reporting the bound of its own checking. The authenticity gate caps confidence at MEDIUM until Arabic wording is verified against a published edition. Your scholar approval, paired with a translator lock, is what allows promotion to HIGH.</p>
+  <h2>আস্থার সীমা <span class="en-sub">· The confidence ceiling</span></h2>
+  <p>বর্তমানে প্রতিটি হাদিসের আস্থা-স্তর (confidence) <strong>MEDIUM</strong>। এটি দুর্বলতার স্বীকারোক্তি নয় — বরং সিস্টেমের নিজস্ব যাচাইয়ের সীমা সম্পর্কে সততা। আরবি মূল পাঠ প্রকাশিত সংস্করণের সাথে মিলিয়ে দেখা না হওয়া পর্যন্ত MEDIUM-এ থাকবে। আপনার অনুমোদনের পর HIGH-এ উন্নীত হবে, ইন শা আল্লাহ।</p>
 
   <div class="ornament-divider">❦</div>
 
-  <h2>What you absolutely should not be asked to do</h2>
-  <p>If you ever receive a packet that asks you to approve a fabricated narration, a translation that elides the meaning of a fiqh term, a chapter framing that issues fatwa under cover of description, or a chapter that quietly drops <span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span> tags — please refuse and notify the project. The system is built to make those asks impossible, but no system is perfect.</p>
+  <h2>যা আপনার কাছে কখনো চাওয়া উচিত নয় <span class="en-sub">· What we should never ask</span></h2>
+  <p>যদি কোনো সময় আপনার কাছে — জাল হাদিস অনুমোদন, ফিকহী শব্দের অর্থ লঘুকরণ, বর্ণনার আড়ালে গোপন ফতোয়া প্রদান, বা <span class="tag tag-scholar">NEEDS SCHOLAR REVIEW</span> চিহ্ন নীরবে সরিয়ে নেওয়া — চাওয়া হয়, দয়া করে অস্বীকার করুন এবং আমাদের জানান। এই সিস্টেম এমনভাবে তৈরি যাতে এ ধরনের অনুরোধ অসম্ভব হয়, কিন্তু কোনো সিস্টেম নিখুঁত নয়।</p>
 
-  <p style="text-align: center; margin-top: 48px; color: var(--ink-soft); font-style: italic;">A smaller, fully-verified book is better than a larger book with even one fabricated narration. Your time is gratefully received.</p>
+  <p style="text-align: center; margin-top: 48px; color: var(--ink-soft); font-size: 16px;">
+    একটি ছোট কিন্তু সম্পূর্ণ যাচাইকৃত বই একটি বড় কিন্তু একটিও জাল হাদিসসহ বইয়ের চেয়ে উত্তম।<br>
+    <em style="font-family: var(--font-en-serif); font-style: italic; font-size: 13px;">A smaller, fully-verified book is better than a larger book with even one fabricated narration.</em>
+  </p>
 
 </div>
 </main>
 
 <footer class="site-footer">
-  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; Manuscript review interface &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
+  <p>Nobiji <span class="ornament">❦</span> Pro &nbsp;·&nbsp; স্কলার গাইড &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="mufti-review.html">Mufti Review</a> &nbsp;·&nbsp; <a href="review.html">Submit Review</a> &nbsp;·&nbsp; <button class="mode-toggle" type="button">Reader mode</button></p>
 </footer>
 
 <script src="assets/js/chapters-data.js"></script>
