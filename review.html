@@ -326,7 +326,7 @@
               <span class="t-bn">HID নম্বর <span class="optional">(যেমন: HID-0056 — নির্দিষ্ট হাদিস সম্পর্কে না হলে খালি রাখুন)</span></span>
               <span class="t-en">HID number <span class="optional">(e.g., HID-0056 — leave blank if not narration-specific)</span></span>
             </label>
-            <input type="text" id="hid" name="hid" placeholder="HID-NNNN" pattern="^(HID-\d{4}|hid-\d{4}|)$" />
+            <input type="text" id="hid" name="hid" placeholder="HID-NNNN" />
             <div class="help">
               <span class="t-bn">ফরম্যাট: <code>HID-NNNN</code>। অধ্যায়ের কাঠামো বা গদ্য সম্পর্কে মন্তব্য হলে খালি রাখুন।</span>
               <span class="t-en">Format: <code>HID-NNNN</code>. If the issue is about chapter framing or prose, leave blank.</span>
@@ -491,64 +491,72 @@
 <script>
   // ─── Page logic for review.html ─────────────────────────────
   (function () {
-    var params = new URLSearchParams(location.search);
+    var params = new URLSearchParams(window.location.search);
     var rootEl = document.documentElement;
 
-    // 1. Success state
-    if (params.get("success") === "1") {
+    // ─── Helpers ────────────────────────────────────────────
+    function showThankYou(updateUrl) {
       var panel = document.getElementById("form-panel");
       var ty = document.getElementById("thankyou");
       if (panel) panel.hidden = true;
       if (ty) ty.hidden = false;
-      if (ty && ty.scrollIntoView) ty.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Replace the URL so refresh keeps the thank-you state.
+      // history.replaceState does NOT navigate or redirect.
+      if (updateUrl && window.history && window.history.replaceState) {
+        try {
+          window.history.replaceState({}, "", "/review.html?success=1");
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
+    }
+
+    // ─── 1. Success state from URL ──────────────────────────
+    // If we land here with ?success=1 (e.g., user refreshed thank-you,
+    // or non-JS form submission redirected here), show thank-you immediately.
+    // Do NOT redirect — just swap panels.
+    if (params.get("success") === "1") {
+      showThankYou(false);
       return;
     }
 
-    // 2. Language toggle wiring
+    // ─── 2. Language toggle wiring ──────────────────────────
     function applyFormLang(lang) {
       if (lang !== "en" && lang !== "bn") lang = "bn";
       rootEl.setAttribute("data-form-lang", lang);
       try { localStorage.setItem("nobiji-form-lang", lang); } catch (e) {}
 
-      // Toggle button active state
       document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
         var isActive = btn.getAttribute("data-set-lang") === lang;
         btn.classList.toggle("active", isActive);
         btn.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
 
-      // Rewrite <option> text contents based on language
       document.querySelectorAll("select option").forEach(function (opt) {
         var txt = opt.getAttribute("data-" + lang);
         if (txt) opt.textContent = txt;
       });
 
-      // Swap placeholders on textareas/inputs that have data-placeholder-*
       document.querySelectorAll("[data-placeholder-bn]").forEach(function (el) {
         var p = el.getAttribute("data-placeholder-" + lang);
         if (p !== null) el.setAttribute("placeholder", p);
       });
 
-      // Update the hidden form-language field
       var flh = document.getElementById("form-language");
       if (flh) flh.value = lang;
 
-      // Update <html lang="">
       rootEl.setAttribute("lang", lang);
     }
 
-    // Initial application
     var initialLang = rootEl.getAttribute("data-form-lang") || "bn";
     applyFormLang(initialLang);
 
-    // Hook up toggle buttons
     document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
       btn.addEventListener("click", function () {
         applyFormLang(btn.getAttribute("data-set-lang"));
       });
     });
 
-    // 3. Prefill chapter if ?ch=NN was passed (from "Review this chapter" button)
+    // ─── 3. Prefill chapter from ?ch=NN ─────────────────────
     var chParam = params.get("ch");
     if (chParam) {
       var sel = document.getElementById("chapter");
@@ -562,18 +570,104 @@
       }
     }
 
-    // 4. Prefill HID if ?hid=HID-NNNN was passed
+    // ─── 4. Prefill HID from ?hid=HID-NNNN ──────────────────
     var hidParam = params.get("hid");
     if (hidParam) {
       var hidIn = document.getElementById("hid");
       if (hidIn) hidIn.value = hidParam;
     }
 
-    // 5. Fill hidden metadata
+    // ─── 5. Hidden metadata ─────────────────────────────────
     var subAt = document.getElementById("submitted-at");
     if (subAt) subAt.value = new Date().toISOString();
     var uaIn = document.getElementById("user-agent");
     if (uaIn) uaIn.value = navigator.userAgent || "";
+
+    // ─── 6. AJAX form submission ────────────────────────────
+    // Why AJAX:
+    //   The form's action="/review.html?success=1" relies on Netlify
+    //   preserving the query string through its post-submit redirect.
+    //   In practice that chain is unreliable (Netlify's pretty-URL
+    //   handling sometimes lands on the generic Netlify success page,
+    //   which looks like an error page to a Mufti reading in Bangla).
+    //
+    //   AJAX submission keeps the user on this page, posts the form
+    //   data directly to Netlify's form endpoint (any path on the
+    //   same domain works — Netlify intercepts based on `form-name`),
+    //   then updates the URL to ?success=1 via history.replaceState
+    //   and shows the thank-you panel inline. No redirect, no
+    //   navigation.
+    //
+    //   The form's action="" stays in HTML so that non-JS browsers
+    //   still POST normally — Netlify will route them to its default
+    //   success page in that fallback case.
+    var form = document.querySelector('form[name="mufti-review"]');
+    if (form && typeof window.fetch === "function" && typeof window.FormData === "function") {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Gentle HID normalization — no blocking, just cleanup.
+        // "hid-0056" → "HID-0056". Anything else passes through untouched.
+        var hidIn = document.getElementById("hid");
+        if (hidIn && hidIn.value) {
+          var trimmed = hidIn.value.trim();
+          if (/^hid-\d{4}$/i.test(trimmed)) {
+            hidIn.value = trimmed.toUpperCase();
+          } else {
+            hidIn.value = trimmed;
+          }
+        }
+
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var origLabel = submitBtn ? submitBtn.innerHTML : "";
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="t-bn">জমা দেওয়া হচ্ছে...</span><span class="t-en">Submitting...</span>';
+        }
+
+        // Build application/x-www-form-urlencoded body
+        var fd = new FormData(form);
+        var pairs = [];
+        fd.forEach(function (value, key) {
+          pairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
+        });
+        var body = pairs.join("&");
+
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body
+        }).then(function (response) {
+          if (response.ok || response.status === 200 || response.status === 303) {
+            // Success — show thank-you inline; replace URL with ?success=1
+            showThankYou(true);
+          } else {
+            // Server returned non-2xx — restore button, show error
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = origLabel;
+            }
+            alert(
+              "দুঃখিত, জমা ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।\n\n" +
+              "Submission failed. Please try again, or contact the editorial team."
+            );
+          }
+        }).catch(function () {
+          // Network error
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = origLabel;
+          }
+          alert(
+            "ইন্টারনেট সমস্যা — অনুগ্রহ করে আবার চেষ্টা করুন।\n\n" +
+            "Network error — please try again."
+          );
+        });
+      });
+    }
+    // If fetch/FormData isn't available, the form falls back to normal POST
+    // submission via the action attribute. Netlify will process it and
+    // redirect according to its default behaviour.
   })();
 </script>
 </body>
